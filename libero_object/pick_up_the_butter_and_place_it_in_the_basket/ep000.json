@@ -1,0 +1,131 @@
+{
+ "model": "gr00t_n1.7",
+ "model_name": "GR00T N1.7",
+ "method": "DéjàVLA",
+ "config": "tiered_online",
+ "bench": "libero",
+ "bench_name": "LIBERO",
+ "suite": "libero_object",
+ "task": "pick_up_the_butter_and_place_it_in_the_basket",
+ "task_id": 6,
+ "instruction": "pick up the butter and place it in the basket",
+ "episode": 0,
+ "success": true,
+ "steps": 143,
+ "n_calls": 13,
+ "tiers": {
+  "one_step": 13
+ },
+ "calls": [
+  {
+   "step": 0,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.9954
+  },
+  {
+   "step": 12,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.9886
+  },
+  {
+   "step": 24,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.98715
+  },
+  {
+   "step": 36,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.98295
+  },
+  {
+   "step": 48,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.9726
+  },
+  {
+   "step": 56,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.95896
+  },
+  {
+   "step": 68,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.94479
+  },
+  {
+   "step": 80,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.96603
+  },
+  {
+   "step": 92,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.95126
+  },
+  {
+   "step": 104,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.94818
+  },
+  {
+   "step": 116,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.94163
+  },
+  {
+   "step": 128,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.9332
+  },
+  {
+   "step": 136,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.92071
+  }
+ ],
+ "policy": {
+  "denoising_steps": 4,
+  "anchor": 8,
+  "extend": 12,
+  "full_below": 0.8310504913330078,
+  "reuse_at": null
+ },
+ "fps": 20,
+ "video": "videos/gr00t_n1.7/libero/libero_object/pick_up_the_butter_and_place_it_in_the_basket/ep000.mp4",
+ "poster": "videos/gr00t_n1.7/libero/libero_object/pick_up_the_butter_and_place_it_in_the_basket/ep000.jpg",
+ "run": "tiered-run1_demo_libero_libero_object",
+ "episode_key": "gr00t_n1.7|tiered_online|libero|libero_object|pick_up_the_butter_and_place_it_in_the_basket|0",
+ "episode_seed": 4251316215988065208,
+ "env_reset": {
+  "slot": 0,
+  "slot_episode": 0,
+  "slot_seed": 4242
+ },
+ "git_sha": "961aa1f6f19b7d8ce3d2b8a2c273bf3cc6902fef"
+}

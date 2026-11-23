@@ -1,0 +1,117 @@
+{
+ "model": "gr00t_n1.7",
+ "model_name": "GR00T N1.7",
+ "method": "DéjàVLA",
+ "config": "tiered_online",
+ "bench": "libero",
+ "bench_name": "LIBERO",
+ "suite": "libero_goal",
+ "task": "put_the_wine_bottle_on_the_rack",
+ "task_id": 9,
+ "instruction": "put the wine bottle on the rack",
+ "episode": 0,
+ "success": true,
+ "steps": 119,
+ "n_calls": 11,
+ "tiers": {
+  "one_step": 11
+ },
+ "calls": [
+  {
+   "step": 0,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.98419
+  },
+  {
+   "step": 12,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.9741
+  },
+  {
+   "step": 24,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.98346
+  },
+  {
+   "step": 36,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.96696
+  },
+  {
+   "step": 48,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.97252
+  },
+  {
+   "step": 60,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.96656
+  },
+  {
+   "step": 72,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.97565
+  },
+  {
+   "step": 80,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.94296
+  },
+  {
+   "step": 92,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.94021
+  },
+  {
+   "step": 104,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.9312
+  },
+  {
+   "step": 116,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.95062
+  }
+ ],
+ "policy": {
+  "denoising_steps": 4,
+  "anchor": 8,
+  "extend": 12,
+  "full_below": 0.8310504913330078,
+  "reuse_at": null
+ },
+ "fps": 20,
+ "video": "videos/gr00t_n1.7/libero/libero_goal/put_the_wine_bottle_on_the_rack/ep000.mp4",
+ "poster": "videos/gr00t_n1.7/libero/libero_goal/put_the_wine_bottle_on_the_rack/ep000.jpg",
+ "run": "tiered-run1_demo_libero_libero_goal",
+ "episode_key": "gr00t_n1.7|tiered_online|libero|libero_goal|put_the_wine_bottle_on_the_rack|0",
+ "episode_seed": 5135455427432403609,
+ "env_reset": {
+  "slot": 0,
+  "slot_episode": 0,
+  "slot_seed": 4242
+ },
+ "git_sha": "961aa1f6f19b7d8ce3d2b8a2c273bf3cc6902fef"
+}

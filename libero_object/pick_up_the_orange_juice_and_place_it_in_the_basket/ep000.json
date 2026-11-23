@@ -1,0 +1,573 @@
+{
+ "model": "gr00t_n1.7",
+ "model_name": "GR00T N1.7",
+ "method": "DéjàVLA",
+ "config": "tiered_online",
+ "bench": "libero",
+ "bench_name": "LIBERO",
+ "suite": "libero_object",
+ "task": "pick_up_the_orange_juice_and_place_it_in_the_basket",
+ "task_id": 9,
+ "instruction": "pick up the orange juice and place it in the basket",
+ "episode": 0,
+ "success": false,
+ "steps": 720,
+ "n_calls": 76,
+ "tiers": {
+  "one_step": 34,
+  "full": 42
+ },
+ "calls": [
+  {
+   "step": 0,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.9967
+  },
+  {
+   "step": 12,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.98872
+  },
+  {
+   "step": 24,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.97937
+  },
+  {
+   "step": 36,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.97416
+  },
+  {
+   "step": 44,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.97762
+  },
+  {
+   "step": 52,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.95693
+  },
+  {
+   "step": 64,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.9543
+  },
+  {
+   "step": 76,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.95882
+  },
+  {
+   "step": 84,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.95136
+  },
+  {
+   "step": 96,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.91569
+  },
+  {
+   "step": 104,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.93661
+  },
+  {
+   "step": 112,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.89834
+  },
+  {
+   "step": 120,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.92067
+  },
+  {
+   "step": 128,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.87659
+  },
+  {
+   "step": 140,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.88594
+  },
+  {
+   "step": 152,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.89812
+  },
+  {
+   "step": 164,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.89622
+  },
+  {
+   "step": 172,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.90389
+  },
+  {
+   "step": 180,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.90808
+  },
+  {
+   "step": 188,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.91141
+  },
+  {
+   "step": 196,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.9131
+  },
+  {
+   "step": 204,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.9159
+  },
+  {
+   "step": 212,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.91166
+  },
+  {
+   "step": 220,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.9122
+  },
+  {
+   "step": 228,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.90526
+  },
+  {
+   "step": 236,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.90853
+  },
+  {
+   "step": 244,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.90574
+  },
+  {
+   "step": 252,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.90226
+  },
+  {
+   "step": 260,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.89564
+  },
+  {
+   "step": 268,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.90377
+  },
+  {
+   "step": 276,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.89196
+  },
+  {
+   "step": 284,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.87711
+  },
+  {
+   "step": 296,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": 0.80717
+  },
+  {
+   "step": 308,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.84722
+  },
+  {
+   "step": 316,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.84585
+  },
+  {
+   "step": 324,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 8,
+   "score": 0.81665
+  },
+  {
+   "step": 332,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 8,
+   "score": 0.81693
+  },
+  {
+   "step": 340,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 8,
+   "score": 0.82873
+  },
+  {
+   "step": 348,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 8,
+   "score": 0.81084
+  },
+  {
+   "step": 356,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": 0.79704
+  },
+  {
+   "step": 368,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": 0.74307
+  },
+  {
+   "step": 380,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 8,
+   "score": 0.78469
+  },
+  {
+   "step": 388,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 8,
+   "score": 0.80092
+  },
+  {
+   "step": 396,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": 0.73083
+  },
+  {
+   "step": 408,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 8,
+   "score": 0.68004
+  },
+  {
+   "step": 416,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": 0.72089
+  },
+  {
+   "step": 428,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 8,
+   "score": 0.76949
+  },
+  {
+   "step": 436,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 8,
+   "score": 0.77328
+  },
+  {
+   "step": 444,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 8,
+   "score": 0.74882
+  },
+  {
+   "step": 452,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 8,
+   "score": 0.6804
+  },
+  {
+   "step": 460,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": 0.72926
+  },
+  {
+   "step": 472,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 8,
+   "score": 0.75978
+  },
+  {
+   "step": 480,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 8,
+   "score": 0.76877
+  },
+  {
+   "step": 488,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 8,
+   "score": 0.72721
+  },
+  {
+   "step": 496,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": 0.71682
+  },
+  {
+   "step": 508,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 8,
+   "score": 0.7778
+  },
+  {
+   "step": 516,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": 0.77256
+  },
+  {
+   "step": 528,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 8,
+   "score": 0.72403
+  },
+  {
+   "step": 536,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": 0.74089
+  },
+  {
+   "step": 548,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 8,
+   "score": 0.7776
+  },
+  {
+   "step": 556,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 8,
+   "score": 0.73975
+  },
+  {
+   "step": 564,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": 0.72672
+  },
+  {
+   "step": 576,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 8,
+   "score": 0.78127
+  },
+  {
+   "step": 584,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": 0.77348
+  },
+  {
+   "step": 596,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 8,
+   "score": 0.73452
+  },
+  {
+   "step": 604,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": 0.71767
+  },
+  {
+   "step": 616,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": 0.7802
+  },
+  {
+   "step": 628,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 8,
+   "score": 0.72463
+  },
+  {
+   "step": 636,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": 0.73358
+  },
+  {
+   "step": 648,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 8,
+   "score": 0.78923
+  },
+  {
+   "step": 656,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": 0.76118
+  },
+  {
+   "step": 668,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 8,
+   "score": 0.72326
+  },
+  {
+   "step": 676,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": 0.74884
+  },
+  {
+   "step": 688,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": 0.78736
+  },
+  {
+   "step": 700,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 8,
+   "score": 0.71998
+  },
+  {
+   "step": 708,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": 0.73344
+  }
+ ],
+ "policy": {
+  "denoising_steps": 4,
+  "anchor": 8,
+  "extend": 12,
+  "full_below": 0.8310504913330078,
+  "reuse_at": null
+ },
+ "fps": 20,
+ "video": "videos/gr00t_n1.7/libero/libero_object/pick_up_the_orange_juice_and_place_it_in_the_basket/ep000.mp4",
+ "poster": "videos/gr00t_n1.7/libero/libero_object/pick_up_the_orange_juice_and_place_it_in_the_basket/ep000.jpg",
+ "run": "tiered-run1_demo_libero_libero_object",
+ "episode_key": "gr00t_n1.7|tiered_online|libero|libero_object|pick_up_the_orange_juice_and_place_it_in_the_basket|0",
+ "episode_seed": 4061026488101304370,
+ "env_reset": {
+  "slot": 0,
+  "slot_episode": 0,
+  "slot_seed": 4242
+ },
+ "git_sha": "961aa1f6f19b7d8ce3d2b8a2c273bf3cc6902fef"
+}

@@ -1,0 +1,194 @@
+{
+ "model": "gr00t_n1.7",
+ "model_name": "GR00T N1.7",
+ "method": "DéjàVLA",
+ "config": "tiered_online",
+ "bench": "libero",
+ "bench_name": "LIBERO",
+ "suite": "libero_10",
+ "task": "KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it",
+ "task_id": 3,
+ "instruction": "put the black bowl in the bottom drawer of the cabinet and close it",
+ "episode": 0,
+ "success": true,
+ "steps": 248,
+ "n_calls": 22,
+ "tiers": {
+  "one_step": 22
+ },
+ "calls": [
+  {
+   "step": 0,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.98671
+  },
+  {
+   "step": 12,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.98914
+  },
+  {
+   "step": 24,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.98138
+  },
+  {
+   "step": 36,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.97313
+  },
+  {
+   "step": 48,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.96532
+  },
+  {
+   "step": 60,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.97019
+  },
+  {
+   "step": 72,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.97219
+  },
+  {
+   "step": 80,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.96833
+  },
+  {
+   "step": 92,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.97481
+  },
+  {
+   "step": 104,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.97452
+  },
+  {
+   "step": 116,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.97124
+  },
+  {
+   "step": 128,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.96835
+  },
+  {
+   "step": 140,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.96015
+  },
+  {
+   "step": 152,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.9718
+  },
+  {
+   "step": 164,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.96427
+  },
+  {
+   "step": 176,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.97005
+  },
+  {
+   "step": 184,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.96735
+  },
+  {
+   "step": 196,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.96065
+  },
+  {
+   "step": 208,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.96559
+  },
+  {
+   "step": 220,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.98179
+  },
+  {
+   "step": 232,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.97995
+  },
+  {
+   "step": 244,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.98236
+  }
+ ],
+ "policy": {
+  "denoising_steps": 4,
+  "anchor": 8,
+  "extend": 12,
+  "full_below": 0.8310504913330078,
+  "reuse_at": null
+ },
+ "fps": 20,
+ "video": "videos/gr00t_n1.7/libero/libero_10/KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it/ep000.mp4",
+ "poster": "videos/gr00t_n1.7/libero/libero_10/KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it/ep000.jpg",
+ "run": "tiered-run1_demo_libero_libero_10",
+ "episode_key": "gr00t_n1.7|tiered_online|libero|libero_10|KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it|0",
+ "episode_seed": 3548655434166085308,
+ "env_reset": {
+  "slot": 0,
+  "slot_episode": 0,
+  "slot_seed": 4242
+ },
+ "git_sha": "961aa1f6f19b7d8ce3d2b8a2c273bf3cc6902fef"
+}

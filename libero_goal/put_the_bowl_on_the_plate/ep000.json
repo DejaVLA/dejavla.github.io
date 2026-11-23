@@ -1,0 +1,89 @@
+{
+ "model": "gr00t_n1.7",
+ "model_name": "GR00T N1.7",
+ "method": "DéjàVLA",
+ "config": "tiered_online",
+ "bench": "libero",
+ "bench_name": "LIBERO",
+ "suite": "libero_goal",
+ "task": "put_the_bowl_on_the_plate",
+ "task_id": 8,
+ "instruction": "put the bowl on the plate",
+ "episode": 0,
+ "success": true,
+ "steps": 75,
+ "n_calls": 7,
+ "tiers": {
+  "one_step": 7
+ },
+ "calls": [
+  {
+   "step": 0,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.98434
+  },
+  {
+   "step": 12,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.97297
+  },
+  {
+   "step": 24,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.98432
+  },
+  {
+   "step": 32,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.97662
+  },
+  {
+   "step": 40,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.94286
+  },
+  {
+   "step": 52,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.95685
+  },
+  {
+   "step": 64,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.96873
+  }
+ ],
+ "policy": {
+  "denoising_steps": 4,
+  "anchor": 8,
+  "extend": 12,
+  "full_below": 0.8310504913330078,
+  "reuse_at": null
+ },
+ "fps": 20,
+ "video": "videos/gr00t_n1.7/libero/libero_goal/put_the_bowl_on_the_plate/ep000.mp4",
+ "poster": "videos/gr00t_n1.7/libero/libero_goal/put_the_bowl_on_the_plate/ep000.jpg",
+ "run": "tiered-run1_demo_libero_libero_goal",
+ "episode_key": "gr00t_n1.7|tiered_online|libero|libero_goal|put_the_bowl_on_the_plate|0",
+ "episode_seed": 3520462865580326025,
+ "env_reset": {
+  "slot": 0,
+  "slot_episode": 0,
+  "slot_seed": 4242
+ },
+ "git_sha": "961aa1f6f19b7d8ce3d2b8a2c273bf3cc6902fef"
+}
