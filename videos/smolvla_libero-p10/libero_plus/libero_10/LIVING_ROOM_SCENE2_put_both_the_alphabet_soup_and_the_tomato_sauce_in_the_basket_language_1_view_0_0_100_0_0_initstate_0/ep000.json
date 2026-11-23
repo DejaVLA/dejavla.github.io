@@ -1,0 +1,409 @@
+{
+ "model": "smolvla_libero-p10",
+ "model_name": "SmolVLA",
+ "method": "DéjàVLA",
+ "config": "tiered_online",
+ "bench": "libero_plus",
+ "bench_name": "LIBERO-Plus",
+ "suite": "libero_10",
+ "task": "LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_language_1_view_0_0_100_0_0_initstate_0",
+ "task_id": 1101,
+ "instruction": "please make sure the basket contains both the alphabet soup and the tomato sauce",
+ "perturbation": {
+  "category": "Language Instructions",
+  "difficulty_level": 2,
+  "base_task": "LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket"
+ },
+ "episode": 0,
+ "success": false,
+ "steps": 520,
+ "n_calls": 52,
+ "tiers": {
+  "full": 52
+ },
+ "calls": [
+  {
+   "step": 0,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 10,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 20,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 30,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 40,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 50,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 60,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 70,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 80,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 90,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 100,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 110,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 120,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 130,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 140,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 150,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 160,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 170,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 180,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 190,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 200,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 210,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 220,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 230,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 240,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 250,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 260,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 270,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 280,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 290,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 300,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 310,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 320,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 330,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 340,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 350,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 360,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 370,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 380,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 390,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 400,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 410,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 420,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 430,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 440,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 450,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 460,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 470,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 480,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 490,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 500,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  },
+  {
+   "step": 510,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": -2.0
+  }
+ ],
+ "policy": {
+  "denoising_steps": 10,
+  "anchor": 10,
+  "extend": null,
+  "full_below": 0.5535106062889099,
+  "reuse_at": 0.9841175079345703
+ },
+ "fps": 20,
+ "video": "videos/smolvla_libero-p10/libero_plus/libero_10/LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_language_1_view_0_0_100_0_0_initstate_0/ep000.mp4",
+ "poster": "videos/smolvla_libero-p10/libero_plus/libero_10/LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_language_1_view_0_0_100_0_0_initstate_0/ep000.jpg",
+ "run": "tiered-run1_demo_lplus_libero_10",
+ "episode_key": "smolvla_libero-p10|tiered_online|libero|libero_10|LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_language_1_view_0_0_100_0_0_initstate_0|0",
+ "episode_seed": 4481072793202377974,
+ "env_reset": {
+  "init_state": 0,
+  "repeat": 0,
+  "seed": 1000
+ },
+ "git_sha": "961aa1f6f19b7d8ce3d2b8a2c273bf3cc6902fef"
+}
