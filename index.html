@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DéjàVLA</title>
+<meta name="description" content="DéjàVLA: training-free acceleration of flow-matching VLA policies that recalls the policy's own successful motions.">
+<style>
+:root {
+  --bg: #f5f4f0; --surface: #ffffff; --raised: #fbfaf7; --ink: #0b0b0b; --ink2: #52514e; --muted: #898781; --line: #d9d8d2;
+  --blue: #2a78d6; --blue-dark: #184f95; --reuse: #8ec0f5; --wash: #eaf2fc; --full: #898781; --late: #e0703f;
+  --anc: #d9d8d2; --ext: #184f95; --ok: #1f8a4c; --bad: #c2412d; --on-blue: #ffffff;
+  --shadow: 0 1px 2px rgba(0,0,0,.05), 0 6px 20px rgba(0,0,0,.06);
+  --r: 12px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111110; --surface: #1b1b19; --raised: #222220; --ink: #f2f1ec; --ink2: #bdbbb4; --muted: #8f8d86; --line: #34332f;
+    --blue: #4b91e8; --blue-dark: #9cc8f7; --reuse: #a9d2f9; --wash: #182638; --full: #8f8d86; --late: #f08a5d;
+    --anc: #44433e; --ext: #9cc8f7; --ok: #4cc27d; --bad: #ef7b63; --shadow: 0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.35);
+  }
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; }
+a { color: var(--blue); }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+button { font: inherit; }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+/* nav */
+nav.top { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+nav.top .wrap { display: flex; align-items: center; gap: 22px; height: 54px; }
+.logo { font-weight: 800; font-size: 19px; letter-spacing: -.01em; color: var(--ink); text-decoration: none; }
+.logo b { color: var(--blue); font-weight: 800; }
+nav.top .links { display: flex; gap: 18px; margin-left: auto; font-size: 14px; }
+nav.top .links a { color: var(--ink2); text-decoration: none; }
+nav.top .links a:hover { color: var(--blue); }
+
+/* hero */
+.hero { padding: 40px 0 28px; }
+.hero .wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: 36px; align-items: center; }
+.eyebrow { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--blue); }
+.hero h1 { font-size: 64px; line-height: 1; margin: 8px 0 14px; letter-spacing: -.03em; }
+.hero h1 b { color: var(--blue); }
+.lead { font-size: 19px; color: var(--ink2); margin: 0 0 20px; max-width: 560px; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 12px 12px 10px; }
+.stat .v { font-size: 21px; font-weight: 800; letter-spacing: -.01em; white-space: nowrap; }
+.stat .v s { color: var(--muted); text-decoration: none; font-weight: 600; }
+.stat .v s::after { content: " → "; color: var(--muted); }
+.stat .k { font-size: 12.5px; color: var(--ink2); line-height: 1.35; margin-top: 2px; }
+.cta { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; font-weight: 600; font-size: 14px; text-decoration: none; border: 1px solid var(--line); color: var(--ink); background: var(--surface); }
+.btn.primary { background: var(--blue); border-color: var(--blue); color: var(--on-blue); }
+.models { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; font-size: 12.5px; color: var(--muted); align-items: center; }
+.pill { border: 1px solid var(--line); border-radius: 999px; padding: 1px 9px; color: var(--ink2); background: var(--surface); }
+
+/* player card with HUD */
+.player { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 10px; box-shadow: var(--shadow); }
+.screen { position: relative; aspect-ratio: 1; background: #000; border-radius: 10px; overflow: hidden; }
+.screen video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hud { position: absolute; left: 8px; right: 8px; display: flex; justify-content: space-between; gap: 6px; pointer-events: none; }
+.hud.top { top: 8px; } .hud.bottom { bottom: 8px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 700; color: #fff; background: rgba(10,10,10,.66); border-radius: 999px; padding: 3px 10px; backdrop-filter: blur(4px); white-space: nowrap; }
+.chip .dot { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+.chip.ok::before { content: "✓"; color: #6be39a; } .chip.bad::before { content: "✗"; color: #ff9a85; }
+.chip .ext { color: #ffd2bd; }
+.cap { display: flex; justify-content: space-between; gap: 10px; font-size: 13px; color: var(--ink2); margin: 8px 2px 0; }
+.cap b { color: var(--ink); font-weight: 600; }
+
+/* strips */
+.strip { position: relative; margin-top: 8px; }
+.lane { position: relative; background: var(--line); border-radius: 3px; overflow: hidden; }
+.lane.tiers { height: 12px; } .lane.hz { height: 5px; margin-top: 2px; background: transparent; }
+.lane .seg { position: absolute; top: 0; bottom: 0; border-right: 2px solid var(--surface); }
+.lane.hz .seg.ext { background: var(--ext); } .lane.hz .seg.anc { background: var(--anc); }
+.strip.click .lane.tiers .seg { cursor: pointer; }
+.strip.click .lane.tiers .seg:hover { filter: brightness(1.12); }
+.strip .head { position: absolute; top: -2px; bottom: -2px; width: 2px; background: var(--ink); border-radius: 1px; left: 0; pointer-events: none; }
+.key { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--ink2); align-items: center; }
+.key i { display: inline-block; width: 20px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.key i.thin { height: 5px; vertical-align: 1px; }
+
+/* sections */
+section.block { padding: 56px 0 8px; }
+.shead { display: flex; align-items: baseline; gap: 14px; margin-bottom: 6px; }
+.shead .n { font-size: 13px; font-weight: 800; color: var(--blue); letter-spacing: .06em; }
+h2 { font-size: 34px; letter-spacing: -.02em; margin: 0; line-height: 1.15; }
+.sub { color: var(--ink2); font-size: 16.5px; max-width: 820px; margin: 8px 0 22px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; }
+h3 { font-size: 18px; margin: 0 0 6px; letter-spacing: -.01em; }
+sub { font-size: .72em; line-height: 0; position: relative; vertical-align: baseline; bottom: -.25em; }
+.card p { margin: 0; color: var(--ink2); font-size: 14.5px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.viz { height: 120px; margin: 0 0 14px; border-radius: 10px; background: var(--raised); border: 1px solid var(--line); position: relative; overflow: hidden; display: grid; place-items: center; }
+.tagline { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+
+/* knob visuals */
+.layers { display: flex; flex-direction: column-reverse; gap: 3px; width: 62%; }
+.layers i { height: 3px; border-radius: 2px; background: var(--blue); animation: layer 4.8s infinite; }
+.layers i:nth-child(-n+2) { animation: none; background: var(--blue-dark); }
+@keyframes layer { 0%, 45% { opacity: 1; } 55%, 95% { opacity: .14; } 100% { opacity: 1; } }
+.layers-lab { position: absolute; left: 10px; bottom: 8px; font-size: 11px; color: var(--muted); }
+#knobs .viz { height: 140px; }
+#knobs .viz.has-lab { padding-bottom: 24px; }
+.horizon-viz { display: flex; gap: 3px; align-items: flex-end; position: relative; }
+.horizon-viz i { width: 9px; height: 30px; border-radius: 2px; background: var(--anc); }
+.horizon-viz i.a { background: var(--blue); }
+.horizon-viz i.e { animation: extend 4.8s infinite; }
+@keyframes extend { 0%, 45% { background: var(--ext); } 55%, 95% { background: var(--anc); } 100% { background: var(--ext); } }
+.grip { position: absolute; top: -22px; left: calc(19 * 12px); font-size: 12px; font-weight: 700; color: var(--late); animation: grip 4.8s infinite; white-space: nowrap; transform: translateX(-50%); }
+@keyframes grip { 0%, 45% { opacity: 0; } 55%, 95% { opacity: 1; } 100% { opacity: 0; } }
+.hlab { position: absolute; left: 10px; bottom: 8px; font-size: 11px; color: var(--muted); }
+
+/* pipeline */
+.pipe { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+.diagram { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 12px; overflow-x: auto; }
+.diagram svg { display: block; width: 100%; min-width: 760px; height: auto; }
+svg .node rect { fill: var(--raised); stroke: var(--line); stroke-width: 1.5; transition: fill .35s, stroke .35s; }
+svg .node text { fill: var(--ink); font-size: 15px; font-weight: 700; }
+svg .node text.s { fill: var(--ink2); font-size: 12px; font-weight: 500; }
+svg .node { transition: opacity .35s; }
+svg .node.on rect { fill: var(--wash); stroke: var(--blue); stroke-width: 2.5; }
+svg .node.dim { opacity: .3; }
+svg .edge { fill: none; stroke: var(--line); stroke-width: 2.5; transition: stroke .35s, opacity .35s; marker-end: url(#arr); }
+svg .edge.flow { stroke: var(--blue); stroke-dasharray: 8 6; animation: flow .9s linear infinite; marker-end: url(#arrOn); }
+svg .edge.dim { opacity: .35; }
+svg .edge.loop { stroke-dasharray: 3 5; }
+svg .elab { font-size: 12px; fill: var(--muted); font-weight: 600; transition: fill .35s; }
+svg .elab.on { fill: var(--blue-dark); }
+@keyframes flow { to { stroke-dashoffset: -28; } }
+.stepper { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 14px; }
+.steps { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; align-items: center; }
+.steps button { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 4px 11px; font-size: 13px; cursor: pointer; color: var(--ink); }
+.steps button[aria-pressed="true"] { background: var(--blue); color: var(--on-blue); border-color: var(--blue); }
+.steps .ctl { margin-left: auto; display: flex; gap: 6px; }
+.steps .ctl button { width: 34px; padding: 4px 0; }
+.stepcard h3 { font-size: 22px; margin-bottom: 8px; }
+.stepcard p { font-size: 15px; color: var(--ink2); margin: 0 0 10px; }
+.stepcard .fact { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.stepcard .fact span { font-size: 12.5px; background: var(--wash); color: var(--blue-dark); border-radius: 6px; padding: 2px 8px; }
+.bars { display: grid; gap: 7px; }
+.bars .b { display: grid; grid-template-columns: 112px 1fr 62px; gap: 8px; align-items: center; font-size: 13px; color: var(--ink2); }
+.bars .b .t { height: 16px; background: var(--raised); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+.bars .b .t i { display: block; height: 100%; border-radius: 3px; transition: opacity .4s; }
+.bars .b.on { color: var(--ink); font-weight: 700; }
+.bars .b:not(.on) .t i { opacity: .35; }
+.progress { height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; margin-top: 10px; }
+.progress i { display: block; height: 100%; width: 0; background: var(--blue); }
+
+/* components */
+.gauge { position: relative; width: 86%; height: 60px; }
+.gauge .zones { position: absolute; top: 18px; left: 0; right: 0; height: 14px; border-radius: 4px; overflow: hidden; display: flex; }
+.gauge .zones i { height: 100%; }
+.gauge .mk { position: absolute; top: 10px; width: 3px; height: 30px; background: var(--ink); border-radius: 2px; animation: sweep 6s ease-in-out infinite; }
+@keyframes sweep { 0% { left: 92%; } 30% { left: 70%; } 55% { left: 8%; } 75% { left: 60%; } 100% { left: 92%; } }
+.gauge .lab { position: absolute; top: 38px; font-size: 11px; color: var(--muted); transform: translateX(-50%); white-space: nowrap; }
+.mem { display: grid; grid-template-columns: repeat(3, auto); gap: 10px; }
+.mem .g { display: grid; grid-template-columns: repeat(6, 9px); gap: 3px; padding: 6px; border-radius: 6px; background: var(--wash); }
+.mem .g i { width: 9px; height: 9px; border-radius: 2px; background: var(--reuse); }
+.mem .g i.hit { background: var(--blue); animation: hit 2.4s infinite; }
+@keyframes hit { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.5); } }
+.mem .g:not(.q) { opacity: .45; }
+.memlab { position: absolute; left: 10px; bottom: 8px; font-size: 11px; color: var(--muted); }
+.cal { display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 6px; width: 90%; font-size: 11.5px; text-align: center; }
+.cal div { border-radius: 6px; padding: 8px 4px; line-height: 1.25; }
+.cal .c1 { background: var(--wash); color: var(--blue-dark); } .cal .c2 { background: var(--surface); border: 1px solid var(--line); color: var(--ink2); }
+.cal .c3 { background: var(--blue); color: var(--on-blue); }
+table.settings { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 14px; margin-top: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; }
+table.settings th, table.settings td { padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--line); }
+table.settings th { font-size: 12.5px; color: var(--muted); background: var(--raised); font-weight: 700; }
+table.settings td.num { font-variant-numeric: tabular-nums; }
+table.settings tr:last-child td { border-bottom: none; }
+.tablewrap { overflow-x: auto; }
+
+/* examples */
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.tabs button { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 6px 14px; font-size: 14px; cursor: pointer; color: var(--ink); }
+.tabs button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.example { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.panel { display: grid; gap: 14px; }
+.panel .row1 { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.panel .callno { font-size: 28px; font-weight: 800; letter-spacing: -.02em; }
+.panel .callno small { font-size: 15px; color: var(--muted); font-weight: 600; }
+.tierchip { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; font-size: 18px; }
+.tierchip i { width: 16px; height: 16px; border-radius: 4px; }
+.tierchip small { color: var(--muted); font-weight: 600; font-size: 13px; }
+.why { font-size: 14.5px; color: var(--ink2); min-height: 44px; margin-top: -6px; }
+.mini h4 { margin: 0 0 6px; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.sim { position: relative; height: 48px; margin-top: 18px; transition: opacity .3s; }
+.sim .zones { position: absolute; top: 6px; left: 0; right: 0; height: 14px; border-radius: 4px; overflow: hidden; display: flex; background: var(--line); }
+.sim .zones i { height: 100%; }
+.sim .mk { position: absolute; top: 0; width: 3px; height: 26px; background: var(--ink); border-radius: 2px; transition: left .35s; }
+.sim .tick { position: absolute; top: 24px; font-size: 11px; color: var(--muted); transform: translateX(-50%); white-space: nowrap; }
+.sim .val { position: absolute; top: -18px; font-size: 12px; font-weight: 700; transform: translateX(-50%); white-space: nowrap; transition: left .35s; }
+.nomatch { font-size: 13px; font-weight: 700; color: var(--late); }
+.compute { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: 14px; margin: 0; }
+.compute dt { color: var(--muted); } .compute dd { margin: 0; font-weight: 600; }
+.compute dd.skip { color: var(--muted); font-weight: 500; text-decoration: line-through; }
+.slots { display: flex; gap: 3px; flex-wrap: wrap; }
+.slots i { width: 11px; height: 18px; border-radius: 2px; background: var(--line); transition: background .3s; }
+.slots i.f { background: var(--blue); } .slots i.f.x { background: var(--ext); }
+.hztext { font-size: 13.5px; color: var(--ink2); margin-top: 4px; }
+.tally { display: flex; gap: 12px; flex-wrap: wrap; font-size: 13px; color: var(--ink2); }
+.tally i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+.story { font-size: 15px; color: var(--ink2); margin: 12px 2px 0; max-width: 900px; }
+
+/* rollouts */
+.controls { position: sticky; top: 54px; z-index: 10; background: var(--bg); border-bottom: 1px solid var(--line); padding: 8px 0; }
+.controls .in { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.group { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+.group > b { font-size: 11.5px; color: var(--muted); font-weight: 700; margin-right: 2px; text-transform: uppercase; letter-spacing: .05em; }
+button.f { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 3px 10px; font-size: 13px; cursor: pointer; }
+button.f[aria-pressed="true"] { background: var(--blue); border-color: var(--blue); color: var(--on-blue); }
+select { font: inherit; font-size: 13px; padding: 3px 6px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+label.check { font-size: 13px; display: flex; align-items: center; gap: 5px; cursor: pointer; }
+.count { margin-left: auto; color: var(--muted); font-size: 13px; }
+/* columns never grow past their width with all 4 policies shown, so videos keep that size when fewer are selected */
+.colhead, .cells { display: grid; grid-template-columns: repeat(var(--n, 4), minmax(0, calc((100% - 3 * 10px) / 4))); gap: 10px; justify-content: center; }
+.colhead { position: sticky; top: calc(54px + var(--ctl-h, 46px)); z-index: 9; background: var(--bg); padding: 8px 0 6px; font-weight: 800; font-size: 15px; }
+.colhead small { display: block; font-weight: 500; font-size: 12px; color: var(--muted); }
+.trow { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 10px; margin-bottom: 10px; }
+.rowhead { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: baseline; margin: 0 2px 8px; }
+.rowhead .instr { font-weight: 700; font-size: 15.5px; }
+.tag { font-size: 12px; color: var(--blue-dark); background: var(--wash); border-radius: 4px; padding: 0 6px; white-space: nowrap; }
+.tag.cat { color: var(--ink2); background: transparent; border: 1px solid var(--line); }
+figure { margin: 0; min-width: 0; }
+.cell .screen { border-radius: 8px; cursor: zoom-in; }
+.cell .chip { font-size: 11.5px; padding: 2px 8px; }
+.cell .mname { display: none; }
+figcaption { font-size: 12px; color: var(--ink2); margin-top: 4px; display: flex; justify-content: space-between; gap: 6px; flex-wrap: wrap; }
+.empty { aspect-ratio: 1; border: 1px dashed var(--line); border-radius: 8px; display: grid; place-items: center; color: var(--muted); font-size: 12px; text-align: center; padding: 8px; }
+dialog { border: none; border-radius: 14px; padding: 0; background: var(--surface); color: var(--ink); width: min(980px, calc(100vw - 24px)); max-height: calc(100vh - 24px); }
+dialog::backdrop { background: rgba(0,0,0,.6); }
+.close { position: absolute; top: 8px; right: 12px; border: none; background: transparent; color: var(--ink2); font-size: 24px; cursor: pointer; z-index: 2; }
+.modal { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 16px; padding: 16px; }
+.modal h3 { padding-right: 24px; }
+.calls { font-size: 12.5px; max-height: 300px; overflow: auto; border-top: 1px solid var(--line); padding-top: 6px; margin-top: 8px; }
+.calls div { display: grid; grid-template-columns: 50px 62px 1fr 64px 70px; gap: 6px; padding: 2px 4px; border-radius: 4px; cursor: pointer; }
+.calls div:hover { background: var(--raised); }
+.calls div.now { background: var(--wash); color: var(--blue-dark); font-weight: 700; }
+.calls i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+footer { margin-top: 40px; border-top: 1px solid var(--line); padding: 22px 0 36px; color: var(--muted); font-size: 13px; }
+
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { animation: none !important; }
+}
+@media (max-width: 960px) {
+  .hero .wrap, .example, .stepper, .modal { grid-template-columns: 1fr; }
+  .grid3 { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 48px; }
+}
+@media (max-width: 720px) {
+  .wrap { padding: 0 16px; }
+  nav.top .links { display: none; }
+  .stats { grid-template-columns: 1fr; }
+  .grid2 { grid-template-columns: 1fr; }
+  h2 { font-size: 27px; }
+  .controls { position: static; }
+  .colhead { display: none; }
+  .cells { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cell .mname { display: inline-flex; }
+  .cell .hud.bottom .chip.hz { display: none; }
+  .bars .b { grid-template-columns: 96px 1fr 56px; }
+  .calls div { grid-template-columns: 44px 54px 1fr 54px; }
+  .calls div span:nth-child(5) { display: none; }
+}
+</style>
+</head>
+<body>
+<nav class="top"><div class="wrap">
+  <a class="logo" href="#top"><b>Déjà</b>VLA</a>
+  <div class="links"><a href="#knobs">Idea</a><a href="#pipeline">Pipeline</a><a href="#components">Components</a><a href="#examples">Examples</a><a href="#demos">Rollouts</a></div>
+</div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+  <div>
+    <div class="eyebrow">Training-free acceleration for flow-matching VLA policies</div>
+    <h1><b>Déjà</b>VLA</h1>
+    <p class="lead">Robot tasks repeat. DéjàVLA remembers the policy's own successful motions, recognizes a familiar
+      scene after two VLM layers, and computes only what each call needs.</p>
+    <div class="stats">
+      <div class="stat"><div class="v"><s>13.34</s>2.36 ms</div><div class="k">latency per action, π0 on LIBERO (RTX 5000 Ada)</div></div>
+      <div class="stat"><div class="v"><s>91.7%</s>94.3%</div><div class="k">success, π0 on LIBERO</div></div>
+      <div class="stat"><div class="v"><s>2.40</s>0.45 J</div><div class="k">energy per action, π0 on Jetson AGX Orin</div></div>
+    </div>
+    <div class="cta"><a class="btn primary" href="#pipeline">How it works</a><a class="btn" href="#demos" id="cta-demos">Watch the rollouts</a></div>
+    <div class="models">Full policy → DéjàVLA, as reported in the paper. Policies: <span class="pill">π0</span><span class="pill">π0.5</span><span class="pill">GR00T N1.7</span><span class="pill">SmolVLA</span></div>
+  </div>
+  <div id="hero"></div>
+</div></header>
+
+<main>
+<section class="block" id="knobs"><div class="wrap">
+  <div class="shead reveal"><span class="n">01</span><h2>Three knobs, set at every call</h2></div>
+  <p class="sub reveal">A flow-matching VLA runs its whole VLM, takes every denoising step from noise and executes a fixed
+    number of actions, whatever the scene. DéjàVLA sets three knobs per call from how closely the scene matches what the
+    policy has already solved.</p>
+  <div class="grid3">
+    <div class="card reveal"><div class="viz has-lab"><div class="layers" id="layers"></div><span class="layers-lab">VLM layers (first 2 always run)</span></div>
+      <div class="tagline">Context</div><h3>How much of the VLM to run</h3>
+      <p>Every call runs the first two VLM layers. When the stored successor of the last match is close enough, the call
+        stops there: no further layers, no action expert.</p></div>
+    <div class="card reveal"><div class="viz"><svg viewBox="0 0 220 90" width="86%" aria-hidden="true">
+        <path fill="none" stroke="var(--blue)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <animate attributeName="d" dur="4.8s" repeatCount="indefinite" keyTimes="0;.45;.55;1" values="M10 60 L25 28 L40 70 L55 22 L70 64 L85 30 L100 72 L115 26 L130 58 L145 24 L160 66 L175 34 L190 62 L210 40;M10 62 L25 61 L40 57 L55 50 L70 41 L85 34 L100 30 L115 30 L130 33 L145 38 L160 44 L175 47 L190 46 L210 40;M10 62 L25 61 L40 57 L55 50 L70 41 L85 34 L100 30 L115 30 L130 33 L145 38 L160 44 L175 47 L190 46 L210 40;M10 60 L25 28 L40 70 L55 22 L70 64 L85 30 L100 72 L115 26 L130 58 L145 24 L160 66 L175 34 L190 62 L210 40"/>
+        </path><text x="10" y="86" font-size="11" fill="var(--muted)">noise → action chunk</text></svg></div>
+      <div class="tagline">Reflection</div><h3>How many denoising steps, from where</h3>
+      <p>A close match starts from the recalled action chunk, re-noised to τ = 0.8, and takes one step. Only an unfamiliar
+        scene runs the full schedule from noise.</p></div>
+    <div class="card reveal"><div class="viz"><div class="horizon-viz" id="hviz"><span class="grip">✋ gripper change ahead</span></div><span class="hlab">actions executed: 16 or 24 (π0)</span></div>
+      <div class="tagline">Re-planning</div><h3>How many actions to execute</h3>
+      <p>Free motion is predictable; contact needs fresh observations. DéjàVLA executes 1.5× more actions when the
+        chunk holds no gripper change, and the calibrated horizon otherwise.</p></div>
+  </div>
+</div></section>
+
+<section class="block" id="pipeline"><div class="wrap">
+  <div class="shead reveal"><span class="n">02</span><h2>One call, step by step</h2></div>
+  <p class="sub reveal">Each call takes one of three paths. Step through the pipeline, or let it play: the highlighted
+    blocks run, the dimmed ones are skipped.</p>
+  <div class="pipe reveal">
+    <div class="diagram"><svg viewBox="0 0 1100 330" role="img" aria-labelledby="pipe-title" id="pipesvg">
+      <title id="pipe-title">DéjàVLA pipeline</title>
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--line)"/></marker>
+        <marker id="arrOn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--blue)"/></marker>
+      </defs>
+      <path class="edge" id="e-obs" d="M140 170 H169"/>
+      <path class="edge" id="e-key" d="M277 170 H306"/>
+      <path class="edge" id="e-search" d="M365 145 V94"/>
+      <path class="edge" id="e-match" d="M495 90 V131"/>
+      <path class="edge" id="e-ctx" d="M550 170 H586"/>
+      <path class="edge" id="e-ctx2" d="M655 205 V241"/>
+      <path class="edge" id="e-chunk" d="M520 205 V265 H586"/>
+      <path class="edge" id="e-noise" d="M540 300 H586"/>
+      <path class="edge" id="e-out" d="M720 277 H825 V209"/>
+      <path class="edge" id="e-reuse" d="M525 135 V114 H825 V131"/>
+      <path class="edge" id="e-exec" d="M890 170 H926"/>
+      <path class="edge loop" id="e-loop" d="M1005 135 V44 H554"/>
+      <text class="elab" id="l-reuse" x="580" y="108">reuse: stored successor chunk</text>
+      <text class="elab" id="l-chunk" x="512" y="232" text-anchor="end">recalled chunk,</text>
+      <text class="elab" id="l-chunk2" x="512" y="247" text-anchor="end">re-noised to τ = 0.8</text>
+      <text class="elab" id="l-loop" x="640" y="36">every call of a successful episode joins the memory</text>
+      <text class="elab" id="l-score" x="489" y="108" text-anchor="end">score s</text>
+      <g class="node" id="n-obs"><rect x="20" y="135" width="120" height="70" rx="10"/><text x="80" y="164" text-anchor="middle">Observation</text><text class="s" x="80" y="184" text-anchor="middle">camera images</text><text class="s" x="80" y="198" text-anchor="middle">instruction · state</text></g>
+      <g class="node" id="n-vlm12"><rect x="173" y="135" width="104" height="70" rx="10"/><text x="225" y="164" text-anchor="middle">VLM layers</text><text x="225" y="184" text-anchor="middle">1–2</text></g>
+      <g class="node" id="n-key"><rect x="310" y="145" width="110" height="50" rx="10"/><text x="365" y="167" text-anchor="middle">Key</text><text class="s" x="365" y="184" text-anchor="middle">layer-2 features</text></g>
+      <g class="node" id="n-mem"><rect x="300" y="18" width="250" height="72" rx="10"/><text x="425" y="44" text-anchor="middle">Memory</text><text class="s" x="425" y="62" text-anchor="middle">one entry per call of each successful</text><text class="s" x="425" y="77" text-anchor="middle">episode, grouped by instruction</text></g>
+      <g class="node" id="n-router"><rect x="440" y="135" width="110" height="70" rx="10"/><text x="495" y="164" text-anchor="middle">Router</text><text class="s" x="495" y="184" text-anchor="middle">s vs θ1, θ2</text></g>
+      <g class="node" id="n-vlmrest"><rect x="590" y="135" width="130" height="70" rx="10"/><text x="655" y="164" text-anchor="middle">VLM layers</text><text x="655" y="184" text-anchor="middle">3 – L</text></g>
+      <g class="node" id="n-expert"><rect x="590" y="245" width="130" height="65" rx="10"/><text x="655" y="272" text-anchor="middle">Action expert</text><text class="s" id="t-expert" x="655" y="292" text-anchor="middle">1 or K steps</text></g>
+      <g class="node" id="n-noise"><rect x="440" y="286" width="100" height="28" rx="14"/><text class="s" x="490" y="305" text-anchor="middle">noise 𝒩(0, I)</text></g>
+      <g class="node" id="n-horizon"><rect x="760" y="135" width="130" height="70" rx="10"/><text x="825" y="164" text-anchor="middle">Horizon</text><text class="s" x="825" y="184" text-anchor="middle">n<tspan dy="3" style="font-size:9px">anc</tspan><tspan dy="-3"> or n</tspan><tspan dy="3" style="font-size:9px">ext</tspan></text></g>
+      <g class="node" id="n-robot"><rect x="930" y="135" width="150" height="70" rx="10"/><text x="1005" y="164" text-anchor="middle">Robot</text><text class="s" x="1005" y="184" text-anchor="middle">executes n actions</text></g>
+    </svg></div>
+    <div class="stepper">
+      <div class="card stepcard">
+        <div class="steps" id="steps"><span class="ctl"><button type="button" id="prev" aria-label="Previous step">‹</button><button type="button" id="play" aria-label="Pause">❚❚</button><button type="button" id="next" aria-label="Next step">›</button></span></div>
+        <h3 id="st-title"></h3><p id="st-text"></p><div class="fact" id="st-facts"></div>
+        <div class="progress"><i id="st-prog"></i></div>
+      </div>
+      <div class="card"><div class="tagline">Latency per call by path, π0 on RTX 5000 Ada</div>
+        <div class="bars" id="bars"></div>
+        <p style="margin-top:10px;font-size:13px">Medians of measured calls. On LIBERO, 88.8% of π0's calls take one step,
+          8.5% reuse and 2.7% fall back to full denoising; the horizon then spreads each call over more actions.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="block" id="components"><div class="wrap">
+  <div class="shead reveal"><span class="n">03</span><h2>Components</h2></div>
+  <p class="sub reveal">Four parts, no training: a memory and its key, a similarity router, a horizon rule, and a
+    calibration that sets their thresholds on held-out episodes.</p>
+  <div class="grid2">
+    <div class="card reveal"><div class="viz"><div class="mem"><div class="g"></div><div class="g q"></div><div class="g"></div></div><span class="memlab">entries grouped by instruction; top-1 match</span></div>
+      <h3>Two-layer memory retrieval</h3>
+      <p>The memory holds one entry per call of each successful episode: its key, action chunk, robot state and place in
+        the episode. The key comes from the second VLM layer: image and instruction tokens are averaged, centered, projected
+        to 512 values each by a fixed random matrix, and joined with the robot state. A call searches only the entries of
+        its own instruction and keeps the top-1 cosine match.</p></div>
+    <div class="card reveal"><div class="viz"><div class="gauge" id="gauge"></div></div>
+      <h3>Similarity-guided denoising</h3>
+      <p>The match's score s picks the path. If the stored successor of the previous match scores at least θ2 (and within
+        0.01 of the best match), its chunk is reused, at most twice in a row. Otherwise a match above θ1 starts one
+        denoising step from its chunk re-noised to τ = 0.8. Below θ1, with no entry for the instruction, or when the last
+        8 scores drift beyond 3 standard deviations, the call runs the full schedule. For π0, whose actions are relative
+        to the robot state, a recalled chunk is shifted to the current state.</p></div>
+    <div class="card reveal"><div class="viz"><div class="horizon-viz" id="hviz2"><span class="grip">✋ gripper change ahead</span></div><span class="hlab">n<sub>anc</sub> = 16, n<sub>ext</sub> = 24 (π0)</span></div>
+      <h3>Momentum: adaptive execution horizon</h3>
+      <p>The call executes n<sub>ext</sub> = 1.5 × n<sub>anc</sub> actions when those actions hold no gripper open/close change, and n<sub>anc</sub>
+        otherwise. π0 runs 16 or 24 actions and GR00T N1.7 8 or 12. π0.5's calibration found no longer horizon, and
+        SmolVLA's extension lost success at calibration (69% against 75%), so both keep 10.</p></div>
+    <div class="card reveal"><div class="viz"><div class="cal"><div class="c1">episodes 0–19<br><b>memory</b></div><div class="c2">episodes 20–29<br><b>θ1, θ2, horizon</b></div><div class="c3">deployment<br><b>successes join</b></div></div></div>
+      <h3>Online memory update and offline calibration</h3>
+      <p>The memory starts from the successful calibration episodes. θ1 and θ2 are the 5th and 80th percentiles of top-1
+        scores on held-out episodes (SmolVLA: θ1 at the 1st), and the horizon extension is kept only if success stays within
+        3 points. During deployment, every successful episode joins the memory, which keeps at most 10,000 entries per
+        suite and evicts the least recently used.</p></div>
+  </div>
+  <div class="tablewrap reveal"><table class="settings" id="settings"><thead><tr><th>Policy</th><th>Full schedule</th><th>Horizon (n<sub>anc</sub> / n<sub>ext</sub>)</th><th>θ1: full below</th><th>θ2: reuse from</th></tr></thead><tbody></tbody></table></div>
+</div></section>
+
+<section class="block" id="examples"><div class="wrap">
+  <div class="shead reveal"><span class="n">04</span><h2>Examples, call by call</h2></div>
+  <p class="sub reveal">Three π0 episodes from the rollouts below. The panel follows the video: the path the current call
+    took and why, what it computed, and how many actions it executed. Click the bar to jump to a call.</p>
+  <div class="tabs reveal" id="extabs"></div>
+  <div class="example reveal" id="example"></div>
+  <p class="story reveal" id="story"></p>
+</div></section>
+
+<section class="block" id="demos"><div class="wrap">
+  <div class="shead"><span class="n">05</span><h2>Rollouts</h2></div>
+  <p class="sub">Episode 0 of every LIBERO task and of 28 LIBERO-Plus perturbations, for each policy, failures included.
+    On each video, the chips show the current call's path and horizon. Below it, the top bar shows every call's path and
+    the thin bar its horizon. Click a video for the call list.</p>
+  <div class="key" style="margin-bottom:10px">
+    <span><i style="background:var(--reuse)"></i>Reuse (T0)</span><span><i style="background:var(--blue)"></i>One step (T1–2)</span>
+    <span><i style="background:var(--full)"></i>Full denoising (T3)</span><span><i class="thin" style="background:var(--ext)"></i>Extended horizon</span>
+    <span><i class="thin" style="background:var(--anc)"></i>Anchor horizon</span><span>Width: actions executed</span>
+  </div>
+</div>
+<div class="controls" id="controls"><div class="wrap in">
+  <div class="group" id="f-bench"><b>Benchmark</b></div>
+  <div class="group" id="f-suite"><b>Suite</b></div>
+  <div class="group" id="f-cat" hidden><b>Perturbation</b><select id="cat" aria-label="Perturbation category"></select></div>
+  <div class="group" id="f-model"><b>Policies</b></div>
+  <label class="check"><input type="checkbox" id="okonly"> Successes only</label>
+  <span class="count" id="count"></span>
+</div></div>
+<div class="wrap">
+  <div class="colhead" id="colhead"></div>
+  <div id="rows"></div>
+</div></section>
+</main>
+
+<footer><div class="wrap">Simulated rollouts on LIBERO and LIBERO-Plus with each policy's own camera view, one frame per
+  20 Hz control step, played in real time. Latency, energy and success rates are measured separately and reported in the
+  paper; these recordings are not timing measurements.</div></footer>
+<dialog id="dlg"></dialog>
+
+<script>
+const FPS = 20;
+const SUITES = { libero_spatial: "Spatial", libero_object: "Object", libero_goal: "Goal", libero_10: "Long" };
+const ORDER = ["pi0_libero-torch", "pi05_libero-torch", "gr00t_n1.7", "smolvla_libero-p10"];
+const TIER = {
+  reuse: { name: "Reuse", tag: "T0", color: "var(--reuse)" },
+  one_step: { name: "One step", tag: "T1–2", color: "var(--blue)" },
+  full: { name: "Full denoising", tag: "T3", color: "var(--full)" },
+};
+const HERO = { model: "pi0_libero-torch", bench: "libero", suite: "libero_10", task: "KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it" };
+const EXAMPLES = [
+  { label: "Familiar scene", model: "pi0_libero-torch", bench: "libero", suite: "libero_goal", task: "put_the_wine_bottle_on_the_rack",
+    story: "Every call finds a close match (scores 0.977 to 0.997). Call 3 reuses the stored successor, so it stops after two VLM layers and skips the action expert; the other calls take one denoising step from the recalled chunk. Calls with free motion ahead execute 24 actions, calls with a gripper change ahead 16." },
+  { label: "Added objects", model: "pi0_libero-torch", bench: "libero_plus", suite: "libero_object", task: "pick_up_the_alphabet_soup_and_place_it_in_the_basket_add_12",
+    story: "LIBERO-Plus adds objects to the scene. The score drops to 0.43 at call 6, below θ1 = 0.764, and that call falls back to full denoising; the next call matches again (0.95) and returns to one step. Call 12 falls back once more (0.67)." },
+  { label: "Rewritten instruction", model: "pi0_libero-torch", bench: "libero_plus", suite: "libero_object", task: "pick_up_the_alphabet_soup_and_place_it_in_the_basket_language_5_view_0_0_100_0_0_initstate_0",
+    story: "The instruction is rewritten (“collect the alphabet soup and set it in the basket”) and the memory is grouped by instruction, so no stored entry exists: every call runs the full schedule, as the full policy would. The horizon rule still applies, and once the episode succeeds its calls join the memory." },
+];
+const STEPS = [
+  { t: "Observe", nodes: ["obs"], edges: [], text: "A call receives the camera images, the instruction and the robot state, exactly as the full policy would.", facts: [] },
+  { t: "Two VLM layers", nodes: ["obs", "vlm12", "key"], edges: ["e-obs", "e-key"], text: "The VLM runs its first two layers. Their image and instruction tokens are averaged and projected, and joined with the robot state into the key.", facts: ["2 layers", "two 512-value projections + state"] },
+  { t: "Recall", nodes: ["key", "mem", "router"], edges: ["e-search", "e-match"], labels: ["l-score"], text: "The key searches the memory entries of the same instruction and keeps the top-1 cosine match: a call from one of the policy's own successful episodes, with its action chunk.", facts: ["top-1 cosine", "per instruction", "≤ 10,000 entries per suite"] },
+  { t: "Path A: reuse", path: "reuse", nodes: ["router", "horizon", "robot"], edges: ["e-reuse", "e-exec"], labels: ["l-reuse"], text: "If the stored successor of the previous call's match still scores at least θ2, its chunk is executed as is. The call stops after two VLM layers and skips the action expert.", facts: ["s ≥ θ2", "at most 2 in a row"] },
+  { t: "Path B: one step", path: "one_step", nodes: ["router", "vlmrest", "expert", "horizon", "robot"], edges: ["e-ctx", "e-ctx2", "e-chunk", "e-out", "e-exec"], labels: ["l-chunk", "l-chunk2"], expert: "1 step", text: "Otherwise, if the match scores at least θ1, the VLM runs in full and the action expert takes a single step, starting from the recalled chunk re-noised to τ = 0.8 instead of from noise.", facts: ["s ≥ θ1", "1 denoising step", "most calls"] },
+  { t: "Path C: full denoising", path: "full", nodes: ["router", "vlmrest", "expert", "noise", "horizon", "robot"], edges: ["e-ctx", "e-ctx2", "e-noise", "e-out", "e-exec"], expert: "K steps", text: "Below θ1, with no stored entry for the instruction, or when recent scores drift, the call runs the full schedule from noise, as the full policy would.", facts: ["s < θ1 or no entry", "K steps (π0: 10)"] },
+  { t: "Re-plan", nodes: ["horizon", "robot"], edges: ["e-exec"], text: "The horizon rule reads the chunk's gripper command: with no open/close change in the first 1.5 × n_anc actions, the robot executes them all; otherwise n_anc. No extra computation.", facts: ["π0: 16 or 24", "GR00T: 8 or 12"] },
+  { t: "Remember", nodes: ["robot", "mem"], edges: ["e-loop"], labels: ["l-loop"], text: "When an episode succeeds, every one of its calls joins the memory, so the next episode of the task can recall it. The least recently used entries make room.", facts: ["online", "LRU"] },
+];
+const COSTS = [["reuse", "Reuse", 24.5], ["one_step", "One step", 48.8], ["full", "Full denoising", 67.8], ["policy", "Full policy", 66.0]];
+
+let M, models = [];
+// "n_anc" -> n<sub>anc</sub> (same for n_ext) in plain-text strings
+const withSubs = str => str.split(/\bn_(anc|ext)\b/).map((p, i) => i % 2 ? el("span", {}, "n", el("sub", {}, p)) : p);
+const el = (tag, attrs = {}, ...kids) => {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (v == null) continue;
+    if (k === "class") e.className = v; else if (k === "style") e.style.cssText = v;
+    else if (k.startsWith("on")) e.addEventListener(k.slice(2), v); else e.setAttribute(k, v);
+  }
+  for (const k of kids) if (k != null && k !== false) e.append(k);
+  return e;
+};
+const tierOf = t => TIER[t] || { name: t, tag: "", color: "var(--muted)" };
+const pol = v => (M.policies && M.policies[v.model]) || {};
+const callAt = (v, step) => { let k = 0; v.calls.forEach((c, i) => { if (c[0] <= step) k = i; }); return k; };
+const extended = (v, n) => pol(v).extend ? n > pol(v).anchor : null;
+const noEntry = s => s != null && s < -1;
+const fmt = (x, d = 3) => x == null ? "–" : Number(x).toFixed(d);
+const at = (pct, top) => `left:${pct}%;transform:translateX(${pct > 88 ? -100 : pct < 8 ? 0 : -50}%)${top != null ? `;top:${top}px` : ""}`;
+const find = q => M.videos.find(v => v.model === q.model && v.bench === q.bench && v.suite === q.suite && v.task === q.task);
+
+/* video time drives the playheads, chips and panels */
+const players = new Set();
+function track(video, steps, update) {
+  const p = { video, steps, update, last: -1 };
+  players.add(p);
+  return p;
+}
+(function loop() {
+  for (const p of players) {
+    if (!p.video.isConnected) { players.delete(p); continue; }
+    const t = p.video.currentTime;
+    if (t !== p.last) { p.last = t; p.update(Math.min(t * FPS, p.steps - 1e-6)); }
+  }
+  requestAnimationFrame(loop);
+})();
+const autoplay = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) e.target.play().catch(() => {}); else e.target.pause();
+}), { threshold: 0.35 });
+
+function videoEl(v, { controls = false } = {}) {
+  const x = el("video", { muted: "", loop: "", playsinline: "", preload: "none", poster: v.poster, src: v.video,
+    "aria-label": `${v.model_name}: ${v.instruction}` });
+  x.muted = true; x.controls = controls;
+  return x;
+}
+
+function strip(v, { onSeek } = {}) {
+  const p = pol(v), wrap = el("div", { class: "strip" + (onSeek ? " click" : "") });
+  const tl = el("div", { class: "lane tiers" }), hl = el("div", { class: "lane hz" });
+  v.calls.forEach(([step, n, tier, score], i) => {
+    const w = Math.min(n, v.steps - step);
+    if (w <= 0) return;
+    const pos = `left:${100 * step / v.steps}%;width:${100 * w / v.steps}%`;
+    const ext = extended(v, n);
+    const title = `call ${i + 1} · step ${step} · ${tierOf(tier).name} · ${n} actions${ext ? " (extended)" : ""}` +
+      (noEntry(score) ? " · no stored entry" : score != null ? ` · s = ${fmt(score)}` : "");
+    const seg = el("div", { class: "seg", style: `${pos};background:${tierOf(tier).color}`, title });
+    if (onSeek) seg.addEventListener("click", e => { e.stopPropagation(); onSeek(step); });
+    tl.append(seg);
+    if (p.extend) hl.append(el("div", { class: "seg " + (ext ? "ext" : "anc"), style: pos }));
+  });
+  const head = el("i", { class: "head" });
+  wrap.append(tl);
+  if (p.extend) wrap.append(hl);
+  wrap.append(head);
+  return { el: wrap, set: step => { head.style.left = `${100 * step / v.steps}%`; } };
+}
+
+function hudChips(v) {
+  const tier = el("span", { class: "chip" }), hz = el("span", { class: "chip hz" });
+  let shown = -1;
+  const set = step => {
+    const k = callAt(v, step);
+    if (k === shown) return;
+    shown = k;
+    const [, n, t] = v.calls[k] || [];
+    tier.replaceChildren(el("i", { class: "dot", style: `background:${tierOf(t).color}` }), tierOf(t).name);
+    hz.replaceChildren(`${n} actions`, extended(v, n) ? el("span", { class: "ext" }, " · extended") : "");
+  };
+  return { tier, hz, set };
+}
+
+function seekTo(vid, step) { vid.currentTime = step / FPS + 0.01; vid.play().catch(() => {}); }
+
+function playerCard(v) {
+  const vid = videoEl(v);
+  const hud = hudChips(v), st = strip(v, { onSeek: s => seekTo(vid, s) });
+  const callc = el("span", { class: "chip" });
+  const screen = el("div", { class: "screen" }, vid,
+    el("div", { class: "hud top" }, el("span", { class: "chip" }, v.model_name), callc),
+    el("div", { class: "hud bottom" }, hud.tier, hud.hz));
+  track(vid, v.steps, step => { st.set(step); hud.set(step); callc.textContent = `call ${callAt(v, step) + 1} / ${v.n_calls}`; });
+  hud.set(0); callc.textContent = `call 1 / ${v.n_calls}`;
+  autoplay.observe(vid);
+  return el("div", { class: "player" }, screen, st.el,
+    el("div", { class: "cap" }, el("span", {}, el("b", {}, v.instruction)), el("span", {}, `${v.bench_name} ${SUITES[v.suite] || ""}`)));
+}
+
+function buildHero() {
+  const v = find(HERO) || M.videos.find(x => x.success);
+  if (v) document.getElementById("hero").append(playerCard(v));
+  const layers = document.getElementById("layers");
+  for (let i = 0; i < 18; i++) layers.append(el("i", { style: i >= 2 ? `animation-delay:${(i - 2) * 0.03}s` : null }));
+  for (const id of ["hviz", "hviz2"]) {
+    const h = document.getElementById(id);
+    for (let i = 0; i < 24; i++) h.append(el("i", { class: i < 16 ? "a" : "e" }));
+  }
+  document.getElementById("cta-demos").textContent = `Watch ${M.videos.length} rollouts`;
+}
+
+/* pipeline walkthrough */
+let stepIdx = 0, playing = true, t0 = 0;
+const STEP_MS = 5200;
+function setStep(i) {
+  stepIdx = (i + STEPS.length) % STEPS.length;
+  const s = STEPS[stepIdx];
+  document.querySelectorAll("#pipesvg .node").forEach(n => {
+    const on = s.nodes.includes(n.id.slice(2));
+    n.classList.toggle("on", on); n.classList.toggle("dim", !on);
+  });
+  document.querySelectorAll("#pipesvg .edge").forEach(e => {
+    const on = s.edges.includes(e.id);
+    e.classList.toggle("flow", on); e.classList.toggle("dim", !on && e.id !== "e-loop");
+  });
+  document.querySelectorAll("#pipesvg .elab").forEach(l => l.classList.toggle("on", (s.labels || []).includes(l.id)));
+  document.getElementById("t-expert").textContent = s.expert || "1 or K steps";
+  document.getElementById("st-title").textContent = `${stepIdx + 1}. ${s.t}`;
+  document.getElementById("st-text").replaceChildren(...withSubs(s.text));
+  document.getElementById("st-facts").replaceChildren(...s.facts.map(f => el("span", {}, f)));
+  document.querySelectorAll("#steps > button").forEach((b, j) => b.setAttribute("aria-pressed", String(j === stepIdx)));
+  document.querySelectorAll("#bars .b").forEach(b => b.classList.toggle("on", !s.path || b.dataset.k === s.path || b.dataset.k === "policy"));
+  t0 = performance.now();
+}
+function pause() { playing = false; const b = document.getElementById("play"); b.textContent = "▶"; b.setAttribute("aria-label", "Play"); document.getElementById("st-prog").style.width = "0"; }
+function resume() { playing = true; t0 = performance.now(); const b = document.getElementById("play"); b.textContent = "❚❚"; b.setAttribute("aria-label", "Pause"); }
+function buildPipeline() {
+  const box = document.getElementById("steps"), ctl = box.querySelector(".ctl");
+  STEPS.forEach((s, i) => box.insertBefore(el("button", { type: "button", "aria-pressed": "false",
+    onclick: () => { pause(); setStep(i); } }, `${i + 1}. ${s.t}`), ctl));
+  const max = Math.max(...COSTS.map(c => c[2]));
+  document.getElementById("bars").replaceChildren(...COSTS.map(([k, name, ms]) => el("div", { class: "b", "data-k": k },
+    el("span", {}, name), el("span", { class: "t" }, el("i", { style: `width:${100 * ms / max}%;background:${k === "policy" ? "var(--ink2)" : tierOf(k).color}` })),
+    el("span", {}, `${ms.toFixed(1)} ms`))));
+  document.getElementById("prev").onclick = () => { pause(); setStep(stepIdx - 1); };
+  document.getElementById("next").onclick = () => { pause(); setStep(stepIdx + 1); };
+  document.getElementById("play").onclick = () => { playing ? pause() : resume(); };
+  setStep(0);
+  const prog = document.getElementById("st-prog");
+  let visible = false;
+  new IntersectionObserver(es => es.forEach(e => { visible = e.isIntersecting; if (visible) t0 = performance.now(); }), { threshold: 0.3 })
+    .observe(document.getElementById("pipeline"));
+  (function tick(now) {
+    if (playing && visible) {
+      const f = (now - t0) / STEP_MS;
+      prog.style.width = `${Math.min(f, 1) * 100}%`;
+      if (f >= 1) setStep(stepIdx + 1);
+    }
+    requestAnimationFrame(tick);
+  })(performance.now());
+}
+
+function buildComponents() {
+  const p0 = M.policies["pi0_libero-torch"] || { full_below: 0.764, reuse_at: 0.987 };
+  const lo = 0.5, x = s => 100 * (Math.max(s, lo) - lo) / (1 - lo);
+  document.getElementById("gauge").append(el("div", { class: "zones" },
+      el("i", { style: `width:${x(p0.full_below)}%;background:var(--full)` }),
+      el("i", { style: `width:${x(p0.reuse_at) - x(p0.full_below)}%;background:var(--blue)` }),
+      el("i", { style: "flex:1;background:var(--reuse)" })),
+    el("div", { class: "mk" }),
+    el("span", { class: "lab", style: at(x(p0.full_below)) }, `θ1 ${fmt(p0.full_below, 2)}`),
+    el("span", { class: "lab", style: at(x(p0.reuse_at)) }, `θ2 ${fmt(p0.reuse_at, 2)}`),
+    el("span", { class: "lab", style: at(12, 0) }, "full"), el("span", { class: "lab", style: at((x(p0.full_below) + x(p0.reuse_at)) / 2, 0) }, "one step"),
+    el("span", { class: "lab", style: at(100, 0) }, "reuse"), el("span", { class: "lab", style: at(50, 50) }, "similarity s (π0)"));
+  document.querySelectorAll(".mem .g").forEach((grp, gi) => {
+    for (let i = 0; i < 18; i++) grp.append(el("i", { class: gi === 1 && i === 10 ? "hit" : null }));
+  });
+  document.querySelector("#settings tbody").replaceChildren(...models.map(m => {
+    const p = M.policies[m] || {};
+    return el("tr", {}, el("td", {}, el("b", {}, M.models[m])), el("td", { class: "num" }, `${p.denoising_steps} steps`),
+      el("td", { class: "num" }, p.extend ? `${p.anchor} / ${p.extend}` : `${p.anchor} (fixed)`),
+      el("td", { class: "num" }, fmt(p.full_below)), el("td", { class: "num" }, p.reuse_at == null ? "off" : fmt(p.reuse_at)));
+  }));
+}
+
+/* examples */
+function simGauge(p) {
+  const lo = 0.4, x = s => 100 * (Math.min(Math.max(s, lo), 1) - lo) / (1 - lo);
+  const zones = el("div", { class: "zones" },
+    el("i", { style: `width:${x(p.full_below)}%;background:var(--full)` }),
+    el("i", { style: `width:${(p.reuse_at ? x(p.reuse_at) : 100) - x(p.full_below)}%;background:var(--blue)` }),
+    p.reuse_at ? el("i", { style: "flex:1;background:var(--reuse)" }) : null);
+  const mk = el("div", { class: "mk" }), val = el("span", { class: "val" });
+  const box = el("div", { class: "sim" }, zones, mk, val,
+    el("span", { class: "tick", style: at(x(p.full_below)) }, `θ1 ${fmt(p.full_below)}`),
+    p.reuse_at ? el("span", { class: "tick", style: at(x(p.reuse_at)) }, `θ2 ${fmt(p.reuse_at)}`) : null,
+    el("span", { class: "tick", style: at(0) }, "0.4"));
+  const note = el("div", { class: "nomatch", hidden: "" }, "No stored entry for this instruction");
+  return { el: el("div", {}, box, note), set(s) {
+    const none = s == null || noEntry(s);
+    note.hidden = !noEntry(s); mk.hidden = none; val.hidden = none; box.style.opacity = none ? .35 : 1;
+    if (!none) { mk.style.left = `calc(${x(s)}% - 1px)`; val.style.left = `${Math.min(Math.max(x(s), 6), 94)}%`; val.textContent = `s = ${fmt(s)}`; }
+  } };
+}
+function why(v, tier, s) {
+  const p = pol(v);
+  if (tier === "reuse") return "The stored successor of the previous match scores at least θ2: its chunk is executed directly.";
+  if (tier === "one_step") return "The best match scores at least θ1: one denoising step from its chunk, re-noised to τ = 0.8.";
+  if (noEntry(s)) return "No memory entry exists for this instruction: the full schedule from noise.";
+  if (s != null && s < p.full_below) return "The best match scores below θ1: the full schedule from noise.";
+  return "Recent scores drifted from calibration: the full schedule from noise.";
+}
+function buildExample(i) {
+  document.querySelectorAll("#extabs button").forEach((b, j) => b.setAttribute("aria-pressed", String(j === i)));
+  const ex = EXAMPLES[i], v = find(ex), box = document.getElementById("example");
+  document.querySelectorAll("#example video").forEach(x => { autoplay.unobserve(x); x.pause(); });
+  if (!v) { box.replaceChildren(el("p", {}, "This episode is not in the manifest.")); document.getElementById("story").textContent = ""; return; }
+  const p = pol(v), card = playerCard(v), vid = card.querySelector("video");
+  const callno = el("div", { class: "callno" }), chip = el("div", { class: "tierchip" }), whyEl = el("div", { class: "why" });
+  const sim = simGauge(p), vlm = el("dd"), exp = el("dd");
+  const slots = el("div", { class: "slots" });
+  for (let k = 0; k < (p.extend || p.anchor || 24); k++) slots.append(el("i"));
+  const hzText = el("div", { class: "hztext" }), tally = el("div", { class: "tally" });
+  const panel = el("div", { class: "panel card" },
+    el("div", { class: "row1" }, callno, chip), whyEl,
+    el("div", { class: "mini" }, el("h4", {}, "Similarity of the best match"), sim.el),
+    el("div", { class: "mini" }, el("h4", {}, "Computed in this call"),
+      el("dl", { class: "compute" }, el("dt", {}, "VLM"), vlm, el("dt", {}, "Action expert"), exp)),
+    el("div", { class: "mini" }, el("h4", {}, "Actions executed"), slots, hzText),
+    el("div", { class: "mini" }, el("h4", {}, "Calls so far"), tally));
+  let shown = -1;
+  track(vid, v.steps, step => {
+    const k = callAt(v, step);
+    if (k === shown) return;
+    shown = k;
+    const [s0, n, tier, s] = v.calls[k];
+    callno.replaceChildren(`Call ${k + 1}`, el("small", {}, ` of ${v.n_calls} · step ${s0}`));
+    chip.replaceChildren(el("i", { style: `background:${tierOf(tier).color}` }), tierOf(tier).name, el("small", {}, tierOf(tier).tag));
+    whyEl.textContent = why(v, tier, s);
+    sim.set(s);
+    vlm.textContent = tier === "reuse" ? "first 2 layers only" : "all layers";
+    exp.textContent = tier === "reuse" ? "skipped" : tier === "one_step" ? "1 step from the recalled chunk" : `${p.denoising_steps} steps from noise`;
+    exp.className = tier === "reuse" ? "skip" : "";
+    const ext = extended(v, n);
+    slots.querySelectorAll("i").forEach((d, j) => { d.className = j < n ? "f" + (ext && j >= p.anchor ? " x" : "") : ""; });
+    hzText.textContent = p.extend ? (ext ? `${n} actions: extended, no gripper change ahead` : `${n} actions: gripper change ahead`) : `${n} actions (fixed horizon)`;
+    const c = { reuse: 0, one_step: 0, full: 0 };
+    v.calls.slice(0, k + 1).forEach(x => { c[x[2]] = (c[x[2]] || 0) + 1; });
+    tally.replaceChildren(...Object.entries(c).map(([t, m]) => el("span", {}, el("i", { style: `background:${tierOf(t).color}` }), `${tierOf(t).name} ${m}`)));
+  });
+  box.replaceChildren(card, panel);
+  document.getElementById("story").textContent = ex.story;
+}
+
+/* rollouts */
+const state = { bench: "libero", suite: "all", cat: "all", models: new Set(), okOnly: false };
+function chips(box, items, get, set) {
+  box.querySelectorAll("button").forEach(b => b.remove());
+  for (const [val, label] of items) box.append(el("button", { class: "f", type: "button", "aria-pressed": String(get(val)),
+    onclick: () => { set(val); render(); } }, label));
+}
+function cell(v) {
+  const vid = videoEl(v), st = strip(v), hud = hudChips(v);
+  track(vid, v.steps, step => { st.set(step); hud.set(step); });
+  hud.set(0);
+  const screen = el("div", { class: "screen", tabindex: "0", role: "button", "aria-label": `Open ${v.model_name} rollout`,
+      onclick: () => openModal(v), onkeydown: e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModal(v); } } },
+    vid, el("div", { class: "hud top" }, el("span", { class: "chip mname" }, v.model_name), el("span", {}),
+      el("span", { class: "chip " + (v.success ? "ok" : "bad") }, v.success ? "success" : "failure")),
+    el("div", { class: "hud bottom" }, hud.tier, hud.hz));
+  autoplay.observe(vid);
+  const p = pol(v), ne = v.calls.filter(c => extended(v, c[1])).length;
+  const tiers = Object.entries(v.tiers).sort().map(([t, n]) => `${tierOf(t).name} ${n}`).join(" · ");
+  return el("figure", { class: "cell" }, screen, st.el,
+    el("figcaption", {}, el("span", {}, `${(v.steps / FPS).toFixed(1)} s · ${v.n_calls} calls`),
+      el("span", {}, p.extend ? `${ne} of ${v.n_calls} extended` : `horizon ${p.anchor}`)),
+    el("figcaption", {}, el("span", {}, tiers)));
+}
+function openModal(v) {
+  const dlg = document.getElementById("dlg");
+  const p = pol(v), vid = videoEl(v, { controls: true });
+  const st = strip(v, { onSeek: s => seekTo(vid, s) }), hud = hudChips(v);
+  const list = v.calls.map(([s0, n, t, s], i) => el("div", { onclick: () => seekTo(vid, s0) },
+    el("span", {}, `call ${i + 1}`), el("span", {}, `step ${s0}`),
+    el("span", {}, el("i", { style: `background:${tierOf(t).color}` }), tierOf(t).name),
+    el("span", {}, `${n}${extended(v, n) ? " ext." : ""}`), el("span", {}, noEntry(s) ? "no entry" : s == null ? "" : `s ${fmt(s)}`)));
+  track(vid, v.steps, step => { st.set(step); hud.set(step); const k = callAt(v, step); list.forEach((d, i) => d.classList.toggle("now", i === k)); });
+  hud.set(0);
+  const pp = v.perturbation;
+  dlg.replaceChildren(el("button", { class: "close", type: "button", "aria-label": "Close", onclick: () => dlg.close() }, "×"),
+    el("div", { class: "modal" },
+      el("div", {}, el("div", { class: "screen" }, vid, el("div", { class: "hud top" }, hud.tier, hud.hz)), st.el),
+      el("div", {}, el("h3", {}, v.instruction),
+        el("div", { class: "key" }, el("span", { class: "pill" }, v.model_name), el("span", { class: "pill" }, `${v.bench_name} ${SUITES[v.suite] || v.suite}`),
+          pp ? el("span", { class: "pill" }, `${pp.category}, level ${pp.difficulty_level}`) : null,
+          el("span", { class: "pill", style: `color:var(--${v.success ? "ok" : "bad"})` }, v.success ? "success" : "failure")),
+        el("p", { style: "margin:8px 0 0;color:var(--ink2);font-size:14px" },
+          `${v.steps} steps (${(v.steps / FPS).toFixed(1)} s), ${v.n_calls} calls. Horizon ${p.extend ? `${p.anchor} or ${p.extend}` : `${p.anchor}, fixed`}; θ1 ${fmt(p.full_below)}${p.reuse_at ? `, θ2 ${fmt(p.reuse_at)}` : ", no reuse"}.`),
+        el("div", { class: "calls" }, ...list))));
+  dlg.showModal();
+  vid.play().catch(() => {});
+  dlg.onclose = () => vid.pause();
+}
+function render() {
+  const benches = [...new Set(M.videos.map(v => v.bench))];
+  chips(document.getElementById("f-bench"), benches.map(b => [b, M.videos.find(v => v.bench === b).bench_name]),
+    b => state.bench === b, b => { state.bench = b; state.cat = "all"; });
+  const pool = M.videos.filter(v => v.bench === state.bench);
+  const suites = Object.keys(SUITES).filter(s => pool.some(v => v.suite === s));
+  chips(document.getElementById("f-suite"), [["all", "All"], ...suites.map(s => [s, SUITES[s]])], s => state.suite === s, s => { state.suite = s; });
+  const cats = [...new Set(pool.filter(v => v.perturbation).map(v => v.perturbation.category))].sort();
+  const sel = document.getElementById("cat");
+  document.getElementById("f-cat").hidden = !cats.length;
+  sel.replaceChildren(el("option", { value: "all" }, "All"), ...cats.map(c => el("option", { value: c }, c)));
+  sel.value = state.cat;
+  chips(document.getElementById("f-model"), models.map(m => [m, M.models[m]]), m => state.models.has(m),
+    m => { state.models.has(m) ? state.models.delete(m) : state.models.add(m); });
+  const shown = models.filter(m => state.models.has(m));
+  document.documentElement.style.setProperty("--n", Math.max(shown.length, 1));
+  document.getElementById("colhead").replaceChildren(...shown.map(m => {
+    const p = M.policies[m] || {};
+    return el("div", {}, M.models[m], el("small", {}, `${p.denoising_steps}-step schedule · horizon ${p.extend ? `${p.anchor} / ${p.extend}` : p.anchor}${p.reuse_at ? "" : " · no reuse"}`));
+  }));
+  const rows = new Map();
+  for (const v of pool) {
+    if (state.suite !== "all" && v.suite !== state.suite) continue;
+    if (state.cat !== "all" && (!v.perturbation || v.perturbation.category !== state.cat)) continue;
+    const k = `${v.suite}|${v.task_id}`;
+    if (!rows.has(k)) rows.set(k, { first: v, by: {} });
+    rows.get(k).by[v.model] = v;
+  }
+  const order = [...rows.values()].sort((a, b) =>
+    Object.keys(SUITES).indexOf(a.first.suite) - Object.keys(SUITES).indexOf(b.first.suite) || a.first.task_id - b.first.task_id);
+  document.querySelectorAll("#rows video").forEach(x => { autoplay.unobserve(x); x.pause(); });
+  let nv = 0, ns = 0;
+  document.getElementById("rows").replaceChildren(...order.map(({ first, by }) => {
+    const pp = first.perturbation;
+    return el("section", { class: "trow" },
+      el("div", { class: "rowhead" }, el("span", { class: "instr" }, first.instruction),
+        el("span", { class: "tag" }, `${first.bench_name} ${SUITES[first.suite] || first.suite}`),
+        pp ? el("span", { class: "tag cat" }, `${pp.category} · level ${pp.difficulty_level}`) : null),
+      el("div", { class: "cells" }, ...shown.map(m => {
+        const v = by[m];
+        if (!v) return el("div", { class: "empty" }, `${M.models[m]}: not recorded`);
+        if (state.okOnly && !v.success) return el("div", { class: "empty" }, `${M.models[m]}: failure (hidden)`);
+        nv++; ns += v.success;
+        return cell(v);
+      })));
+  }));
+  document.getElementById("count").textContent = `${order.length} tasks · ${nv} videos · ${ns} successes`;
+  document.documentElement.style.setProperty("--ctl-h", `${document.getElementById("controls").offsetHeight}px`);
+}
+
+function reveal() {
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0.12 });
+  document.querySelectorAll(".reveal").forEach(x => io.observe(x));
+}
+
+document.getElementById("cat").addEventListener("change", e => { state.cat = e.target.value; render(); });
+document.getElementById("okonly").addEventListener("change", e => { state.okOnly = e.target.checked; render(); });
+window.addEventListener("resize", () => document.documentElement.style.setProperty("--ctl-h", `${document.getElementById("controls").offsetHeight}px`));
+
+reveal();
+fetch("manifest.json").then(r => r.json()).then(m => {
+  M = m; M.policies = M.policies || {};
+  models = [...ORDER.filter(x => x in M.models), ...Object.keys(M.models).filter(x => !ORDER.includes(x)).sort()];
+  models.forEach(x => state.models.add(x));
+  if (!M.videos.some(v => v.bench === state.bench) && M.videos.length) state.bench = M.videos[0].bench;
+  buildHero(); buildPipeline(); buildComponents();
+  document.getElementById("extabs").replaceChildren(...EXAMPLES.map((ex, i) =>
+    el("button", { type: "button", "aria-pressed": "false", onclick: () => buildExample(i) }, ex.label)));
+  buildExample(0);
+  render();
+}).catch(e => {
+  document.getElementById("rows").textContent = "Could not load manifest.json (" + e + "). Serve this folder over HTTP.";
+  console.error(e);
+});
+</script>
+</body>
+</html>
