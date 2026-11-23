@@ -1,0 +1,213 @@
+{
+ "model": "gr00t_n1.7",
+ "model_name": "GR00T N1.7",
+ "method": "DéjàVLA",
+ "config": "tiered_online",
+ "bench": "libero_plus",
+ "bench_name": "LIBERO-Plus",
+ "suite": "libero_10",
+ "task": "LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_language_1_view_0_0_100_0_0_initstate_0",
+ "task_id": 1101,
+ "instruction": "please make sure the basket contains both the alphabet soup and the tomato sauce",
+ "perturbation": {
+  "category": "Language Instructions",
+  "difficulty_level": 2,
+  "base_task": "LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket"
+ },
+ "episode": 0,
+ "success": true,
+ "steps": 267,
+ "n_calls": 24,
+ "tiers": {
+  "full": 24
+ },
+ "calls": [
+  {
+   "step": 0,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": -2.0
+  },
+  {
+   "step": 12,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": -2.0
+  },
+  {
+   "step": 24,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": -2.0
+  },
+  {
+   "step": 36,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": -2.0
+  },
+  {
+   "step": 48,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": -2.0
+  },
+  {
+   "step": 60,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": -2.0
+  },
+  {
+   "step": 72,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": -2.0
+  },
+  {
+   "step": 84,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": -2.0
+  },
+  {
+   "step": 96,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": -2.0
+  },
+  {
+   "step": 108,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": -2.0
+  },
+  {
+   "step": 120,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": -2.0
+  },
+  {
+   "step": 132,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": -2.0
+  },
+  {
+   "step": 144,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": -2.0
+  },
+  {
+   "step": 156,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": -2.0
+  },
+  {
+   "step": 168,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": -2.0
+  },
+  {
+   "step": 180,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": -2.0
+  },
+  {
+   "step": 192,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 8,
+   "score": -2.0
+  },
+  {
+   "step": 200,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 8,
+   "score": -2.0
+  },
+  {
+   "step": 208,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": -2.0
+  },
+  {
+   "step": 220,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": -2.0
+  },
+  {
+   "step": 232,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": -2.0
+  },
+  {
+   "step": 244,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": -2.0
+  },
+  {
+   "step": 256,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 8,
+   "score": -2.0
+  },
+  {
+   "step": 264,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": -2.0
+  }
+ ],
+ "policy": {
+  "denoising_steps": 4,
+  "anchor": 8,
+  "extend": 12,
+  "full_below": 0.8310504913330078,
+  "reuse_at": null
+ },
+ "fps": 20,
+ "video": "videos/gr00t_n1.7/libero_plus/libero_10/LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_language_1_view_0_0_100_0_0_initstate_0/ep000.mp4",
+ "poster": "videos/gr00t_n1.7/libero_plus/libero_10/LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_language_1_view_0_0_100_0_0_initstate_0/ep000.jpg",
+ "run": "tiered-run1_demo_lplus_libero_10",
+ "episode_key": "gr00t_n1.7|tiered_online|libero|libero_10|LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_language_1_view_0_0_100_0_0_initstate_0|0",
+ "episode_seed": 4481072793202377974,
+ "env_reset": {
+  "slot": 0,
+  "slot_episode": 0,
+  "slot_seed": 42
+ },
+ "git_sha": "961aa1f6f19b7d8ce3d2b8a2c273bf3cc6902fef"
+}

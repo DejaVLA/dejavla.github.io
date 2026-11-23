@@ -1,0 +1,123 @@
+{
+ "model": "gr00t_n1.7",
+ "model_name": "GR00T N1.7",
+ "method": "DéjàVLA",
+ "config": "tiered_online",
+ "bench": "libero_plus",
+ "bench_name": "LIBERO-Plus",
+ "suite": "libero_spatial",
+ "task": "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate_view_0_0_100_0_0_initstate_161",
+ "task_id": 265,
+ "instruction": "pick up the black bowl between the plate and the ramekin and place it on the plate",
+ "perturbation": {
+  "category": "Robot Initial States",
+  "difficulty_level": 2,
+  "base_task": "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate"
+ },
+ "episode": 0,
+ "success": true,
+ "steps": 115,
+ "n_calls": 11,
+ "tiers": {
+  "full": 3,
+  "one_step": 8
+ },
+ "calls": [
+  {
+   "step": 0,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": 0.82443
+  },
+  {
+   "step": 12,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.88049
+  },
+  {
+   "step": 24,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 8,
+   "score": 0.82175
+  },
+  {
+   "step": 32,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.89067
+  },
+  {
+   "step": 40,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.85072
+  },
+  {
+   "step": 52,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.89674
+  },
+  {
+   "step": 64,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.9198
+  },
+  {
+   "step": 72,
+   "tier": "full",
+   "option": "s4",
+   "n_exec": 12,
+   "score": 0.83052
+  },
+  {
+   "step": 84,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.93318
+  },
+  {
+   "step": 96,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.93847
+  },
+  {
+   "step": 108,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.9088
+  }
+ ],
+ "policy": {
+  "denoising_steps": 4,
+  "anchor": 8,
+  "extend": 12,
+  "full_below": 0.8310504913330078,
+  "reuse_at": null
+ },
+ "fps": 20,
+ "video": "videos/gr00t_n1.7/libero_plus/libero_spatial/pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate_view_0_0_100_0_0_initstate_161/ep000.mp4",
+ "poster": "videos/gr00t_n1.7/libero_plus/libero_spatial/pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate_view_0_0_100_0_0_initstate_161/ep000.jpg",
+ "run": "tiered-run1_demo_lplus_libero_spatial",
+ "episode_key": "gr00t_n1.7|tiered_online|libero|libero_spatial|pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate_view_0_0_100_0_0_initstate_161|0",
+ "episode_seed": 1391865634519405446,
+ "env_reset": {
+  "slot": 0,
+  "slot_episode": 0,
+  "slot_seed": 42
+ },
+ "git_sha": "961aa1f6f19b7d8ce3d2b8a2c273bf3cc6902fef"
+}

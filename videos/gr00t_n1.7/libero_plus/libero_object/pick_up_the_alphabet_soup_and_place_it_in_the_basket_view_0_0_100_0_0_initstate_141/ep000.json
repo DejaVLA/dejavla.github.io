@@ -1,0 +1,136 @@
+{
+ "model": "gr00t_n1.7",
+ "model_name": "GR00T N1.7",
+ "method": "DéjàVLA",
+ "config": "tiered_online",
+ "bench": "libero_plus",
+ "bench_name": "LIBERO-Plus",
+ "suite": "libero_object",
+ "task": "pick_up_the_alphabet_soup_and_place_it_in_the_basket_view_0_0_100_0_0_initstate_141",
+ "task_id": 255,
+ "instruction": "pick up the alphabet soup and place it in the basket",
+ "perturbation": {
+  "category": "Robot Initial States",
+  "difficulty_level": 1,
+  "base_task": "pick_up_the_alphabet_soup_and_place_it_in_the_basket"
+ },
+ "episode": 0,
+ "success": true,
+ "steps": 138,
+ "n_calls": 13,
+ "tiers": {
+  "one_step": 13
+ },
+ "calls": [
+  {
+   "step": 0,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.9003
+  },
+  {
+   "step": 12,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.92715
+  },
+  {
+   "step": 24,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.92663
+  },
+  {
+   "step": 36,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.92074
+  },
+  {
+   "step": 44,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.91753
+  },
+  {
+   "step": 52,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.90033
+  },
+  {
+   "step": 64,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.92238
+  },
+  {
+   "step": 72,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.91907
+  },
+  {
+   "step": 84,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.91048
+  },
+  {
+   "step": 96,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.89853
+  },
+  {
+   "step": 108,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.90919
+  },
+  {
+   "step": 120,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 12,
+   "score": 0.91648
+  },
+  {
+   "step": 132,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 8,
+   "score": 0.92581
+  }
+ ],
+ "policy": {
+  "denoising_steps": 4,
+  "anchor": 8,
+  "extend": 12,
+  "full_below": 0.8310504913330078,
+  "reuse_at": null
+ },
+ "fps": 20,
+ "video": "videos/gr00t_n1.7/libero_plus/libero_object/pick_up_the_alphabet_soup_and_place_it_in_the_basket_view_0_0_100_0_0_initstate_141/ep000.mp4",
+ "poster": "videos/gr00t_n1.7/libero_plus/libero_object/pick_up_the_alphabet_soup_and_place_it_in_the_basket_view_0_0_100_0_0_initstate_141/ep000.jpg",
+ "run": "tiered-run1_demo_lplus_libero_object",
+ "episode_key": "gr00t_n1.7|tiered_online|libero|libero_object|pick_up_the_alphabet_soup_and_place_it_in_the_basket_view_0_0_100_0_0_initstate_141|0",
+ "episode_seed": 3739536412000937349,
+ "env_reset": {
+  "slot": 0,
+  "slot_episode": 0,
+  "slot_seed": 42
+ },
+ "git_sha": "961aa1f6f19b7d8ce3d2b8a2c273bf3cc6902fef"
+}
