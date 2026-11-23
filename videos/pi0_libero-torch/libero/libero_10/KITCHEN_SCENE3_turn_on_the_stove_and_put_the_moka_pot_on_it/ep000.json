@@ -1,0 +1,123 @@
+{
+ "model": "pi0_libero-torch",
+ "model_name": "π0",
+ "method": "DéjàVLA",
+ "config": "tiered_online",
+ "bench": "libero",
+ "bench_name": "LIBERO",
+ "suite": "libero_10",
+ "task": "KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it",
+ "task_id": 2,
+ "instruction": "turn on the stove and put the moka pot on it",
+ "episode": 0,
+ "success": true,
+ "steps": 228,
+ "n_calls": 12,
+ "tiers": {
+  "one_step": 11,
+  "reuse": 1
+ },
+ "calls": [
+  {
+   "step": 0,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.98779
+  },
+  {
+   "step": 24,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.98473
+  },
+  {
+   "step": 40,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.97947
+  },
+  {
+   "step": 56,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.91764
+  },
+  {
+   "step": 80,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.974
+  },
+  {
+   "step": 96,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.94886
+  },
+  {
+   "step": 120,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.97261
+  },
+  {
+   "step": 144,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.98564
+  },
+  {
+   "step": 160,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.98693
+  },
+  {
+   "step": 176,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.97909
+  },
+  {
+   "step": 200,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.97974
+  },
+  {
+   "step": 224,
+   "tier": "reuse",
+   "option": "s0",
+   "n_exec": 16,
+   "score": 0.98804
+  }
+ ],
+ "policy": {
+  "denoising_steps": 10,
+  "anchor": 16,
+  "extend": 24,
+  "full_below": 0.7643049836158753,
+  "reuse_at": 0.9872278928756714
+ },
+ "fps": 20,
+ "video": "videos/pi0_libero-torch/libero/libero_10/KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it/ep000.mp4",
+ "poster": "videos/pi0_libero-torch/libero/libero_10/KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it/ep000.jpg",
+ "run": "tiered-run1_demo_libero_libero_10",
+ "episode_key": "pi0_libero-torch|tiered_online|libero|libero_10|KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it|0",
+ "episode_seed": 3013460328165213768,
+ "env_reset": {
+  "init_state": 0
+ },
+ "git_sha": "961aa1f6f19b7d8ce3d2b8a2c273bf3cc6902fef"
+}

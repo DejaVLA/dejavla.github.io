@@ -1,0 +1,123 @@
+{
+ "model": "pi05_libero-torch",
+ "model_name": "π0.5",
+ "method": "DéjàVLA",
+ "config": "tiered_online",
+ "bench": "libero",
+ "bench_name": "LIBERO",
+ "suite": "libero_spatial",
+ "task": "pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate",
+ "task_id": 1,
+ "instruction": "pick up the black bowl next to the ramekin and place it on the plate",
+ "episode": 0,
+ "success": true,
+ "steps": 118,
+ "n_calls": 12,
+ "tiers": {
+  "one_step": 8,
+  "reuse": 4
+ },
+ "calls": [
+  {
+   "step": 0,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.88254
+  },
+  {
+   "step": 10,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.95266
+  },
+  {
+   "step": 20,
+   "tier": "reuse",
+   "option": "s0",
+   "n_exec": 10,
+   "score": 0.95811
+  },
+  {
+   "step": 30,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.96051
+  },
+  {
+   "step": 40,
+   "tier": "reuse",
+   "option": "s0",
+   "n_exec": 10,
+   "score": 0.97509
+  },
+  {
+   "step": 50,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.95708
+  },
+  {
+   "step": 60,
+   "tier": "reuse",
+   "option": "s0",
+   "n_exec": 10,
+   "score": 0.96226
+  },
+  {
+   "step": 70,
+   "tier": "reuse",
+   "option": "s0",
+   "n_exec": 10,
+   "score": 0.958
+  },
+  {
+   "step": 80,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.94561
+  },
+  {
+   "step": 90,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.93881
+  },
+  {
+   "step": 100,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.89778
+  },
+  {
+   "step": 110,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.84971
+  }
+ ],
+ "policy": {
+  "denoising_steps": 10,
+  "anchor": 10,
+  "extend": null,
+  "full_below": 0.760464894771576,
+  "reuse_at": 0.954384732246399
+ },
+ "fps": 20,
+ "video": "videos/pi05_libero-torch/libero/libero_spatial/pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate/ep000.mp4",
+ "poster": "videos/pi05_libero-torch/libero/libero_spatial/pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate/ep000.jpg",
+ "run": "tiered-run1_demo_libero_libero_spatial",
+ "episode_key": "pi05_libero-torch|tiered_online|libero|libero_spatial|pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate|0",
+ "episode_seed": 7770065532533575881,
+ "env_reset": {
+  "init_state": 0
+ },
+ "git_sha": "961aa1f6f19b7d8ce3d2b8a2c273bf3cc6902fef"
+}

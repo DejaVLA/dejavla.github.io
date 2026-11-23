@@ -1,0 +1,94 @@
+{
+ "model": "pi0_libero-torch",
+ "model_name": "π0",
+ "method": "DéjàVLA",
+ "config": "tiered_online",
+ "bench": "libero",
+ "bench_name": "LIBERO",
+ "suite": "libero_10",
+ "task": "STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy",
+ "task_id": 5,
+ "instruction": "pick up the book and place it in the back compartment of the caddy",
+ "episode": 0,
+ "success": true,
+ "steps": 166,
+ "n_calls": 8,
+ "tiers": {
+  "one_step": 8
+ },
+ "calls": [
+  {
+   "step": 0,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.99305
+  },
+  {
+   "step": 24,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.98509
+  },
+  {
+   "step": 48,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.97404
+  },
+  {
+   "step": 64,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.95062
+  },
+  {
+   "step": 80,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.93793
+  },
+  {
+   "step": 104,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.96253
+  },
+  {
+   "step": 128,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.95134
+  },
+  {
+   "step": 152,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.97702
+  }
+ ],
+ "policy": {
+  "denoising_steps": 10,
+  "anchor": 16,
+  "extend": 24,
+  "full_below": 0.7643049836158753,
+  "reuse_at": 0.9872278928756714
+ },
+ "fps": 20,
+ "video": "videos/pi0_libero-torch/libero/libero_10/STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy/ep000.mp4",
+ "poster": "videos/pi0_libero-torch/libero/libero_10/STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy/ep000.jpg",
+ "run": "tiered-run1_demo_libero_libero_10",
+ "episode_key": "pi0_libero-torch|tiered_online|libero|libero_10|STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy|0",
+ "episode_seed": 5596709042434446265,
+ "env_reset": {
+  "init_state": 0
+ },
+ "git_sha": "961aa1f6f19b7d8ce3d2b8a2c273bf3cc6902fef"
+}

@@ -1,0 +1,127 @@
+{
+ "model": "pi0_libero-torch",
+ "model_name": "π0",
+ "method": "DéjàVLA",
+ "config": "tiered_online",
+ "bench": "libero_plus",
+ "bench_name": "LIBERO-Plus",
+ "suite": "libero_10",
+ "task": "LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_view_0_0_100_2_6_initstate_0",
+ "task_id": 682,
+ "instruction": "put both the alphabet soup and the tomato sauce in the basket",
+ "perturbation": {
+  "category": "Camera Viewpoints",
+  "difficulty_level": 3,
+  "base_task": "LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket"
+ },
+ "episode": 0,
+ "success": true,
+ "steps": 248,
+ "n_calls": 12,
+ "tiers": {
+  "one_step": 12
+ },
+ "calls": [
+  {
+   "step": 0,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.93876
+  },
+  {
+   "step": 24,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.94529
+  },
+  {
+   "step": 48,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.92116
+  },
+  {
+   "step": 64,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.86784
+  },
+  {
+   "step": 88,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.85138
+  },
+  {
+   "step": 112,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.91216
+  },
+  {
+   "step": 128,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.91628
+  },
+  {
+   "step": 152,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.88845
+  },
+  {
+   "step": 176,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.91058
+  },
+  {
+   "step": 192,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.93806
+  },
+  {
+   "step": 216,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.83316
+  },
+  {
+   "step": 240,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.85184
+  }
+ ],
+ "policy": {
+  "denoising_steps": 10,
+  "anchor": 16,
+  "extend": 24,
+  "full_below": 0.7643049836158753,
+  "reuse_at": 0.9872278928756714
+ },
+ "fps": 20,
+ "video": "videos/pi0_libero-torch/libero_plus/libero_10/LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_view_0_0_100_2_6_initstate_0/ep000.mp4",
+ "poster": "videos/pi0_libero-torch/libero_plus/libero_10/LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_view_0_0_100_2_6_initstate_0/ep000.jpg",
+ "run": "tiered-run1_demo_lplus_libero_10",
+ "episode_key": "pi0_libero-torch|tiered_online|libero|libero_10|LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_view_0_0_100_2_6_initstate_0|0",
+ "episode_seed": 7939833394097460756,
+ "env_reset": {
+  "init_state": 0
+ },
+ "git_sha": "961aa1f6f19b7d8ce3d2b8a2c273bf3cc6902fef"
+}

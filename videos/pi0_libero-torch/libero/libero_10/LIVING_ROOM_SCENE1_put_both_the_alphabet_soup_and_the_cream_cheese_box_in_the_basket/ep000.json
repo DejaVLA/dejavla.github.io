@@ -1,0 +1,214 @@
+{
+ "model": "pi0_libero-torch",
+ "model_name": "π0",
+ "method": "DéjàVLA",
+ "config": "tiered_online",
+ "bench": "libero",
+ "bench_name": "LIBERO",
+ "suite": "libero_10",
+ "task": "LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket",
+ "task_id": 7,
+ "instruction": "put both the alphabet soup and the cream cheese box in the basket",
+ "episode": 0,
+ "success": false,
+ "steps": 520,
+ "n_calls": 25,
+ "tiers": {
+  "one_step": 18,
+  "full": 7
+ },
+ "calls": [
+  {
+   "step": 0,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.93387
+  },
+  {
+   "step": 24,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.96364
+  },
+  {
+   "step": 48,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.95464
+  },
+  {
+   "step": 64,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.86105
+  },
+  {
+   "step": 88,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 24,
+   "score": 0.72394
+  },
+  {
+   "step": 112,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.78274
+  },
+  {
+   "step": 136,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.81268
+  },
+  {
+   "step": 152,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 16,
+   "score": 0.46279
+  },
+  {
+   "step": 168,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.79527
+  },
+  {
+   "step": 184,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 16,
+   "score": 0.74765
+  },
+  {
+   "step": 200,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.85522
+  },
+  {
+   "step": 216,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.81651
+  },
+  {
+   "step": 232,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.82115
+  },
+  {
+   "step": 248,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.89313
+  },
+  {
+   "step": 272,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.8518
+  },
+  {
+   "step": 296,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.83121
+  },
+  {
+   "step": 312,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.78506
+  },
+  {
+   "step": 336,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.83119
+  },
+  {
+   "step": 360,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.80153
+  },
+  {
+   "step": 384,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 24,
+   "score": 0.74572
+  },
+  {
+   "step": 408,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 24,
+   "score": 0.74622
+  },
+  {
+   "step": 432,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 24,
+   "score": 0.74306
+  },
+  {
+   "step": 456,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 24,
+   "score": 0.74509
+  },
+  {
+   "step": 480,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.7886
+  },
+  {
+   "step": 504,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.78479
+  }
+ ],
+ "policy": {
+  "denoising_steps": 10,
+  "anchor": 16,
+  "extend": 24,
+  "full_below": 0.7643049836158753,
+  "reuse_at": 0.9872278928756714
+ },
+ "fps": 20,
+ "video": "videos/pi0_libero-torch/libero/libero_10/LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket/ep000.mp4",
+ "poster": "videos/pi0_libero-torch/libero/libero_10/LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket/ep000.jpg",
+ "run": "tiered-run1_demo_libero_libero_10",
+ "episode_key": "pi0_libero-torch|tiered_online|libero|libero_10|LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket|0",
+ "episode_seed": 4144080770825584885,
+ "env_reset": {
+  "init_state": 0
+ },
+ "git_sha": "961aa1f6f19b7d8ce3d2b8a2c273bf3cc6902fef"
+}

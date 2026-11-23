@@ -1,0 +1,186 @@
+{
+ "model": "pi05_libero-torch",
+ "model_name": "π0.5",
+ "method": "DéjàVLA",
+ "config": "tiered_online",
+ "bench": "libero",
+ "bench_name": "LIBERO",
+ "suite": "libero_10",
+ "task": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate",
+ "task_id": 6,
+ "instruction": "put the white mug on the plate and put the chocolate pudding to the right of the plate",
+ "episode": 0,
+ "success": true,
+ "steps": 208,
+ "n_calls": 21,
+ "tiers": {
+  "one_step": 18,
+  "reuse": 3
+ },
+ "calls": [
+  {
+   "step": 0,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.9263
+  },
+  {
+   "step": 10,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.90712
+  },
+  {
+   "step": 20,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.91387
+  },
+  {
+   "step": 30,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.95812
+  },
+  {
+   "step": 40,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.92676
+  },
+  {
+   "step": 50,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.88345
+  },
+  {
+   "step": 60,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.91025
+  },
+  {
+   "step": 70,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.88027
+  },
+  {
+   "step": 80,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.89685
+  },
+  {
+   "step": 90,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.94026
+  },
+  {
+   "step": 100,
+   "tier": "reuse",
+   "option": "s0",
+   "n_exec": 10,
+   "score": 0.96951
+  },
+  {
+   "step": 110,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.97692
+  },
+  {
+   "step": 120,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.83955
+  },
+  {
+   "step": 130,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.84277
+  },
+  {
+   "step": 140,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.86586
+  },
+  {
+   "step": 150,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.89774
+  },
+  {
+   "step": 160,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.9321
+  },
+  {
+   "step": 170,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.92788
+  },
+  {
+   "step": 180,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.95809
+  },
+  {
+   "step": 190,
+   "tier": "reuse",
+   "option": "s0",
+   "n_exec": 10,
+   "score": 0.96346
+  },
+  {
+   "step": 200,
+   "tier": "reuse",
+   "option": "s0",
+   "n_exec": 10,
+   "score": 0.96955
+  }
+ ],
+ "policy": {
+  "denoising_steps": 10,
+  "anchor": 10,
+  "extend": null,
+  "full_below": 0.760464894771576,
+  "reuse_at": 0.954384732246399
+ },
+ "fps": 20,
+ "video": "videos/pi05_libero-torch/libero/libero_10/LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate/ep000.mp4",
+ "poster": "videos/pi05_libero-torch/libero/libero_10/LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate/ep000.jpg",
+ "run": "tiered-run1_demo_libero_libero_10",
+ "episode_key": "pi05_libero-torch|tiered_online|libero|libero_10|LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate|0",
+ "episode_seed": 1137137772072627586,
+ "env_reset": {
+  "init_state": 0
+ },
+ "git_sha": "961aa1f6f19b7d8ce3d2b8a2c273bf3cc6902fef"
+}

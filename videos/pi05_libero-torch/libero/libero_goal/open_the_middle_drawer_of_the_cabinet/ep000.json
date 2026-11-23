@@ -1,0 +1,123 @@
+{
+ "model": "pi05_libero-torch",
+ "model_name": "π0.5",
+ "method": "DéjàVLA",
+ "config": "tiered_online",
+ "bench": "libero",
+ "bench_name": "LIBERO",
+ "suite": "libero_goal",
+ "task": "open_the_middle_drawer_of_the_cabinet",
+ "task_id": 0,
+ "instruction": "open the middle drawer of the cabinet",
+ "episode": 0,
+ "success": true,
+ "steps": 115,
+ "n_calls": 12,
+ "tiers": {
+  "one_step": 9,
+  "reuse": 3
+ },
+ "calls": [
+  {
+   "step": 0,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.92685
+  },
+  {
+   "step": 10,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.93984
+  },
+  {
+   "step": 20,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.94867
+  },
+  {
+   "step": 30,
+   "tier": "reuse",
+   "option": "s0",
+   "n_exec": 10,
+   "score": 0.95494
+  },
+  {
+   "step": 40,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.94776
+  },
+  {
+   "step": 50,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.95022
+  },
+  {
+   "step": 60,
+   "tier": "reuse",
+   "option": "s0",
+   "n_exec": 10,
+   "score": 0.969
+  },
+  {
+   "step": 70,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.94974
+  },
+  {
+   "step": 80,
+   "tier": "reuse",
+   "option": "s0",
+   "n_exec": 10,
+   "score": 0.95508
+  },
+  {
+   "step": 90,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.93698
+  },
+  {
+   "step": 100,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.94647
+  },
+  {
+   "step": 110,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.91814
+  }
+ ],
+ "policy": {
+  "denoising_steps": 10,
+  "anchor": 10,
+  "extend": null,
+  "full_below": 0.760464894771576,
+  "reuse_at": 0.954384732246399
+ },
+ "fps": 20,
+ "video": "videos/pi05_libero-torch/libero/libero_goal/open_the_middle_drawer_of_the_cabinet/ep000.mp4",
+ "poster": "videos/pi05_libero-torch/libero/libero_goal/open_the_middle_drawer_of_the_cabinet/ep000.jpg",
+ "run": "tiered-run1_demo_libero_libero_goal",
+ "episode_key": "pi05_libero-torch|tiered_online|libero|libero_goal|open_the_middle_drawer_of_the_cabinet|0",
+ "episode_seed": 7389650165770261079,
+ "env_reset": {
+  "init_state": 0
+ },
+ "git_sha": "961aa1f6f19b7d8ce3d2b8a2c273bf3cc6902fef"
+}

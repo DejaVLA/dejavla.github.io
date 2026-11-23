@@ -1,0 +1,142 @@
+{
+ "model": "pi05_libero-torch",
+ "model_name": "π0.5",
+ "method": "DéjàVLA",
+ "config": "tiered_online",
+ "bench": "libero_plus",
+ "bench_name": "LIBERO-Plus",
+ "suite": "libero_object",
+ "task": "pick_up_the_alphabet_soup_and_place_it_in_the_basket_view_0_0_100_2_10_initstate_0",
+ "task_id": 649,
+ "instruction": "pick up the alphabet soup and place it in the basket",
+ "perturbation": {
+  "category": "Camera Viewpoints",
+  "difficulty_level": 2,
+  "base_task": "pick_up_the_alphabet_soup_and_place_it_in_the_basket"
+ },
+ "episode": 0,
+ "success": true,
+ "steps": 132,
+ "n_calls": 14,
+ "tiers": {
+  "one_step": 11,
+  "full": 3
+ },
+ "calls": [
+  {
+   "step": 0,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.83274
+  },
+  {
+   "step": 10,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.85385
+  },
+  {
+   "step": 20,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.84302
+  },
+  {
+   "step": 30,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.86555
+  },
+  {
+   "step": 40,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.84871
+  },
+  {
+   "step": 50,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.86201
+  },
+  {
+   "step": 60,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.80212
+  },
+  {
+   "step": 70,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": 0.70948
+  },
+  {
+   "step": 80,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": 0.73847
+  },
+  {
+   "step": 90,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": 0.75081
+  },
+  {
+   "step": 100,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.81464
+  },
+  {
+   "step": 110,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.81562
+  },
+  {
+   "step": 120,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.81745
+  },
+  {
+   "step": 130,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.80296
+  }
+ ],
+ "policy": {
+  "denoising_steps": 10,
+  "anchor": 10,
+  "extend": null,
+  "full_below": 0.760464894771576,
+  "reuse_at": 0.954384732246399
+ },
+ "fps": 20,
+ "video": "videos/pi05_libero-torch/libero_plus/libero_object/pick_up_the_alphabet_soup_and_place_it_in_the_basket_view_0_0_100_2_10_initstate_0/ep000.mp4",
+ "poster": "videos/pi05_libero-torch/libero_plus/libero_object/pick_up_the_alphabet_soup_and_place_it_in_the_basket_view_0_0_100_2_10_initstate_0/ep000.jpg",
+ "run": "tiered-run1_demo_lplus_libero_object",
+ "episode_key": "pi05_libero-torch|tiered_online|libero|libero_object|pick_up_the_alphabet_soup_and_place_it_in_the_basket_view_0_0_100_2_10_initstate_0|0",
+ "episode_seed": 4995443266018043802,
+ "env_reset": {
+  "init_state": 0
+ },
+ "git_sha": "961aa1f6f19b7d8ce3d2b8a2c273bf3cc6902fef"
+}

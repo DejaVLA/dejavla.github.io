@@ -1,0 +1,129 @@
+{
+ "model": "pi0_libero-torch",
+ "model_name": "π0",
+ "method": "DéjàVLA",
+ "config": "tiered_online",
+ "bench": "libero",
+ "bench_name": "LIBERO",
+ "suite": "libero_10",
+ "task": "LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket",
+ "task_id": 0,
+ "instruction": "put both the alphabet soup and the tomato sauce in the basket",
+ "episode": 0,
+ "success": true,
+ "steps": 267,
+ "n_calls": 13,
+ "tiers": {
+  "one_step": 13
+ },
+ "calls": [
+  {
+   "step": 0,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.9427
+  },
+  {
+   "step": 24,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.93925
+  },
+  {
+   "step": 48,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.92228
+  },
+  {
+   "step": 64,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.91573
+  },
+  {
+   "step": 88,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.87484
+  },
+  {
+   "step": 112,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.84992
+  },
+  {
+   "step": 128,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.88983
+  },
+  {
+   "step": 144,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.93533
+  },
+  {
+   "step": 168,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.90077
+  },
+  {
+   "step": 192,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.91135
+  },
+  {
+   "step": 208,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.94919
+  },
+  {
+   "step": 232,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.93619
+  },
+  {
+   "step": 256,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.93772
+  }
+ ],
+ "policy": {
+  "denoising_steps": 10,
+  "anchor": 16,
+  "extend": 24,
+  "full_below": 0.7643049836158753,
+  "reuse_at": 0.9872278928756714
+ },
+ "fps": 20,
+ "video": "videos/pi0_libero-torch/libero/libero_10/LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket/ep000.mp4",
+ "poster": "videos/pi0_libero-torch/libero/libero_10/LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket/ep000.jpg",
+ "run": "tiered-run1_demo_libero_libero_10",
+ "episode_key": "pi0_libero-torch|tiered_online|libero|libero_10|LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket|0",
+ "episode_seed": 3002401320051832772,
+ "env_reset": {
+  "init_state": 0
+ },
+ "git_sha": "961aa1f6f19b7d8ce3d2b8a2c273bf3cc6902fef"
+}

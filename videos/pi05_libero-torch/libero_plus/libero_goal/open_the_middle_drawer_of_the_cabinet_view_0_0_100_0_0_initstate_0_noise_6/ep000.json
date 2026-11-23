@@ -1,0 +1,127 @@
+{
+ "model": "pi05_libero-torch",
+ "model_name": "π0.5",
+ "method": "DéjàVLA",
+ "config": "tiered_online",
+ "bench": "libero_plus",
+ "bench_name": "LIBERO-Plus",
+ "suite": "libero_goal",
+ "task": "open_the_middle_drawer_of_the_cabinet_view_0_0_100_0_0_initstate_0_noise_6",
+ "task_id": 1513,
+ "instruction": "open the middle drawer of the cabinet",
+ "perturbation": {
+  "category": "Sensor Noise",
+  "difficulty_level": 4,
+  "base_task": "open_the_middle_drawer_of_the_cabinet"
+ },
+ "episode": 0,
+ "success": true,
+ "steps": 114,
+ "n_calls": 12,
+ "tiers": {
+  "one_step": 12
+ },
+ "calls": [
+  {
+   "step": 0,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.87822
+  },
+  {
+   "step": 10,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.92033
+  },
+  {
+   "step": 20,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.9384
+  },
+  {
+   "step": 30,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.92824
+  },
+  {
+   "step": 40,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.91847
+  },
+  {
+   "step": 50,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.91094
+  },
+  {
+   "step": 60,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.9104
+  },
+  {
+   "step": 70,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.91276
+  },
+  {
+   "step": 80,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.90113
+  },
+  {
+   "step": 90,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.91458
+  },
+  {
+   "step": 100,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.90014
+  },
+  {
+   "step": 110,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.88035
+  }
+ ],
+ "policy": {
+  "denoising_steps": 10,
+  "anchor": 10,
+  "extend": null,
+  "full_below": 0.760464894771576,
+  "reuse_at": 0.954384732246399
+ },
+ "fps": 20,
+ "video": "videos/pi05_libero-torch/libero_plus/libero_goal/open_the_middle_drawer_of_the_cabinet_view_0_0_100_0_0_initstate_0_noise_6/ep000.mp4",
+ "poster": "videos/pi05_libero-torch/libero_plus/libero_goal/open_the_middle_drawer_of_the_cabinet_view_0_0_100_0_0_initstate_0_noise_6/ep000.jpg",
+ "run": "tiered-run1_demo_lplus_libero_goal",
+ "episode_key": "pi05_libero-torch|tiered_online|libero|libero_goal|open_the_middle_drawer_of_the_cabinet_view_0_0_100_0_0_initstate_0_noise_6|0",
+ "episode_seed": 4552746076480386745,
+ "env_reset": {
+  "init_state": 0
+ },
+ "git_sha": "961aa1f6f19b7d8ce3d2b8a2c273bf3cc6902fef"
+}

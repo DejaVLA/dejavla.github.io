@@ -1,0 +1,78 @@
+{
+ "model": "pi0_libero-torch",
+ "model_name": "π0",
+ "method": "DéjàVLA",
+ "config": "tiered_online",
+ "bench": "libero_plus",
+ "bench_name": "LIBERO-Plus",
+ "suite": "libero_goal",
+ "task": "open_the_middle_drawer_of_the_cabinet_view_0_0_100_0_0_initstate_1",
+ "task_id": 281,
+ "instruction": "open the middle drawer of the cabinet",
+ "perturbation": {
+  "category": "Robot Initial States",
+  "difficulty_level": 3,
+  "base_task": "open_the_middle_drawer_of_the_cabinet"
+ },
+ "episode": 0,
+ "success": true,
+ "steps": 119,
+ "n_calls": 5,
+ "tiers": {
+  "one_step": 5
+ },
+ "calls": [
+  {
+   "step": 0,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.98431
+  },
+  {
+   "step": 24,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.97788
+  },
+  {
+   "step": 48,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.98294
+  },
+  {
+   "step": 72,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.99392
+  },
+  {
+   "step": 96,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.97855
+  }
+ ],
+ "policy": {
+  "denoising_steps": 10,
+  "anchor": 16,
+  "extend": 24,
+  "full_below": 0.7643049836158753,
+  "reuse_at": 0.9872278928756714
+ },
+ "fps": 20,
+ "video": "videos/pi0_libero-torch/libero_plus/libero_goal/open_the_middle_drawer_of_the_cabinet_view_0_0_100_0_0_initstate_1/ep000.mp4",
+ "poster": "videos/pi0_libero-torch/libero_plus/libero_goal/open_the_middle_drawer_of_the_cabinet_view_0_0_100_0_0_initstate_1/ep000.jpg",
+ "run": "tiered-run1_demo_lplus_libero_goal",
+ "episode_key": "pi0_libero-torch|tiered_online|libero|libero_goal|open_the_middle_drawer_of_the_cabinet_view_0_0_100_0_0_initstate_1|0",
+ "episode_seed": 1446925893795344175,
+ "env_reset": {
+  "init_state": 0
+ },
+ "git_sha": "961aa1f6f19b7d8ce3d2b8a2c273bf3cc6902fef"
+}

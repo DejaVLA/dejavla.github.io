@@ -1,0 +1,207 @@
+{
+ "model": "pi0_libero-torch",
+ "model_name": "π0",
+ "method": "DéjàVLA",
+ "config": "tiered_online",
+ "bench": "libero",
+ "bench_name": "LIBERO",
+ "suite": "libero_10",
+ "task": "KITCHEN_SCENE8_put_both_moka_pots_on_the_stove",
+ "task_id": 8,
+ "instruction": "put both moka pots on the stove",
+ "episode": 0,
+ "success": true,
+ "steps": 504,
+ "n_calls": 24,
+ "tiers": {
+  "one_step": 22,
+  "full": 2
+ },
+ "calls": [
+  {
+   "step": 0,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.9907
+  },
+  {
+   "step": 24,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.97177
+  },
+  {
+   "step": 48,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.93697
+  },
+  {
+   "step": 72,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.94108
+  },
+  {
+   "step": 96,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.9697
+  },
+  {
+   "step": 112,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.95229
+  },
+  {
+   "step": 136,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.95056
+  },
+  {
+   "step": 160,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.95385
+  },
+  {
+   "step": 184,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.96325
+  },
+  {
+   "step": 200,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.97859
+  },
+  {
+   "step": 224,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.97552
+  },
+  {
+   "step": 248,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.97524
+  },
+  {
+   "step": 272,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.971
+  },
+  {
+   "step": 296,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.92278
+  },
+  {
+   "step": 312,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.89916
+  },
+  {
+   "step": 328,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.89108
+  },
+  {
+   "step": 352,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.8409
+  },
+  {
+   "step": 376,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 16,
+   "score": 0.76333
+  },
+  {
+   "step": 392,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.77071
+  },
+  {
+   "step": 408,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 24,
+   "score": 0.73417
+  },
+  {
+   "step": 432,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.77102
+  },
+  {
+   "step": 456,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.79023
+  },
+  {
+   "step": 480,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.87899
+  },
+  {
+   "step": 496,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.92009
+  }
+ ],
+ "policy": {
+  "denoising_steps": 10,
+  "anchor": 16,
+  "extend": 24,
+  "full_below": 0.7643049836158753,
+  "reuse_at": 0.9872278928756714
+ },
+ "fps": 20,
+ "video": "videos/pi0_libero-torch/libero/libero_10/KITCHEN_SCENE8_put_both_moka_pots_on_the_stove/ep000.mp4",
+ "poster": "videos/pi0_libero-torch/libero/libero_10/KITCHEN_SCENE8_put_both_moka_pots_on_the_stove/ep000.jpg",
+ "run": "tiered-run1_demo_libero_libero_10",
+ "episode_key": "pi0_libero-torch|tiered_online|libero|libero_10|KITCHEN_SCENE8_put_both_moka_pots_on_the_stove|0",
+ "episode_seed": 6872219914711133472,
+ "env_reset": {
+  "init_state": 0
+ },
+ "git_sha": "961aa1f6f19b7d8ce3d2b8a2c273bf3cc6902fef"
+}

@@ -1,0 +1,241 @@
+{
+ "model": "pi05_libero-torch",
+ "model_name": "π0.5",
+ "method": "DéjàVLA",
+ "config": "tiered_online",
+ "bench": "libero_plus",
+ "bench_name": "LIBERO-Plus",
+ "suite": "libero_object",
+ "task": "pick_up_the_alphabet_soup_and_place_it_in_the_basket_light_10",
+ "task_id": 2222,
+ "instruction": "pick up the alphabet soup and place it in the basket",
+ "perturbation": {
+  "category": "Light Conditions",
+  "difficulty_level": 5,
+  "base_task": "pick_up_the_alphabet_soup_and_place_it_in_the_basket"
+ },
+ "episode": 0,
+ "success": false,
+ "steps": 280,
+ "n_calls": 28,
+ "tiers": {
+  "one_step": 9,
+  "reuse": 2,
+  "full": 17
+ },
+ "calls": [
+  {
+   "step": 0,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.94934
+  },
+  {
+   "step": 10,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.93259
+  },
+  {
+   "step": 20,
+   "tier": "reuse",
+   "option": "s0",
+   "n_exec": 10,
+   "score": 0.96121
+  },
+  {
+   "step": 30,
+   "tier": "reuse",
+   "option": "s0",
+   "n_exec": 10,
+   "score": 0.9655
+  },
+  {
+   "step": 40,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.96349
+  },
+  {
+   "step": 50,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.92328
+  },
+  {
+   "step": 60,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.87986
+  },
+  {
+   "step": 70,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.80597
+  },
+  {
+   "step": 80,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.81611
+  },
+  {
+   "step": 90,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.77122
+  },
+  {
+   "step": 100,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.79724
+  },
+  {
+   "step": 110,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": 0.54752
+  },
+  {
+   "step": 120,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": 0.52501
+  },
+  {
+   "step": 130,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": 0.71737
+  },
+  {
+   "step": 140,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": 0.7186
+  },
+  {
+   "step": 150,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": 0.70578
+  },
+  {
+   "step": 160,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": 0.69282
+  },
+  {
+   "step": 170,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": 0.72784
+  },
+  {
+   "step": 180,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": 0.64146
+  },
+  {
+   "step": 190,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": 0.6176
+  },
+  {
+   "step": 200,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": 0.54193
+  },
+  {
+   "step": 210,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": 0.60031
+  },
+  {
+   "step": 220,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": 0.6322
+  },
+  {
+   "step": 230,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": 0.65634
+  },
+  {
+   "step": 240,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": 0.65659
+  },
+  {
+   "step": 250,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": 0.62762
+  },
+  {
+   "step": 260,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": 0.66227
+  },
+  {
+   "step": 270,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": 0.63643
+  }
+ ],
+ "policy": {
+  "denoising_steps": 10,
+  "anchor": 10,
+  "extend": null,
+  "full_below": 0.760464894771576,
+  "reuse_at": 0.954384732246399
+ },
+ "fps": 20,
+ "video": "videos/pi05_libero-torch/libero_plus/libero_object/pick_up_the_alphabet_soup_and_place_it_in_the_basket_light_10/ep000.mp4",
+ "poster": "videos/pi05_libero-torch/libero_plus/libero_object/pick_up_the_alphabet_soup_and_place_it_in_the_basket_light_10/ep000.jpg",
+ "run": "tiered-run1_demo_lplus_libero_object",
+ "episode_key": "pi05_libero-torch|tiered_online|libero|libero_object|pick_up_the_alphabet_soup_and_place_it_in_the_basket_light_10|0",
+ "episode_seed": 2340633920941688167,
+ "env_reset": {
+  "init_state": 0
+ },
+ "git_sha": "961aa1f6f19b7d8ce3d2b8a2c273bf3cc6902fef"
+}

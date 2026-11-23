@@ -1,0 +1,142 @@
+{
+ "model": "pi05_libero-torch",
+ "model_name": "π0.5",
+ "method": "DéjàVLA",
+ "config": "tiered_online",
+ "bench": "libero_plus",
+ "bench_name": "LIBERO-Plus",
+ "suite": "libero_object",
+ "task": "pick_up_the_alphabet_soup_and_place_it_in_the_basket_table_1",
+ "task_id": 0,
+ "instruction": "pick up the alphabet soup and place it in the basket",
+ "perturbation": {
+  "category": "Background Textures",
+  "difficulty_level": 4,
+  "base_task": "pick_up_the_alphabet_soup_and_place_it_in_the_basket"
+ },
+ "episode": 0,
+ "success": true,
+ "steps": 138,
+ "n_calls": 14,
+ "tiers": {
+  "one_step": 7,
+  "full": 7
+ },
+ "calls": [
+  {
+   "step": 0,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.78917
+  },
+  {
+   "step": 10,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.81963
+  },
+  {
+   "step": 20,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.77645
+  },
+  {
+   "step": 30,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.82889
+  },
+  {
+   "step": 40,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.87041
+  },
+  {
+   "step": 50,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.83119
+  },
+  {
+   "step": 60,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 10,
+   "score": 0.79932
+  },
+  {
+   "step": 70,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": 0.75672
+  },
+  {
+   "step": 80,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": 0.75091
+  },
+  {
+   "step": 90,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": 0.75074
+  },
+  {
+   "step": 100,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": 0.7373
+  },
+  {
+   "step": 110,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": 0.74624
+  },
+  {
+   "step": 120,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": 0.72248
+  },
+  {
+   "step": 130,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 10,
+   "score": 0.74164
+  }
+ ],
+ "policy": {
+  "denoising_steps": 10,
+  "anchor": 10,
+  "extend": null,
+  "full_below": 0.760464894771576,
+  "reuse_at": 0.954384732246399
+ },
+ "fps": 20,
+ "video": "videos/pi05_libero-torch/libero_plus/libero_object/pick_up_the_alphabet_soup_and_place_it_in_the_basket_table_1/ep000.mp4",
+ "poster": "videos/pi05_libero-torch/libero_plus/libero_object/pick_up_the_alphabet_soup_and_place_it_in_the_basket_table_1/ep000.jpg",
+ "run": "tiered-run1_demo_lplus_libero_object",
+ "episode_key": "pi05_libero-torch|tiered_online|libero|libero_object|pick_up_the_alphabet_soup_and_place_it_in_the_basket_table_1|0",
+ "episode_seed": 6184579823320285447,
+ "env_reset": {
+  "init_state": 0
+ },
+ "git_sha": "961aa1f6f19b7d8ce3d2b8a2c273bf3cc6902fef"
+}

@@ -1,0 +1,73 @@
+{
+ "model": "pi0_libero-torch",
+ "model_name": "π0",
+ "method": "DéjàVLA",
+ "config": "tiered_online",
+ "bench": "libero",
+ "bench_name": "LIBERO",
+ "suite": "libero_spatial",
+ "task": "pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate",
+ "task_id": 3,
+ "instruction": "pick up the black bowl on the cookie box and place it on the plate",
+ "episode": 0,
+ "success": true,
+ "steps": 82,
+ "n_calls": 5,
+ "tiers": {
+  "one_step": 5
+ },
+ "calls": [
+  {
+   "step": 0,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.99524
+  },
+  {
+   "step": 24,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.98688
+  },
+  {
+   "step": 40,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.9676
+  },
+  {
+   "step": 56,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 24,
+   "score": 0.97279
+  },
+  {
+   "step": 80,
+   "tier": "one_step",
+   "option": "s1-n0.8",
+   "n_exec": 16,
+   "score": 0.94996
+  }
+ ],
+ "policy": {
+  "denoising_steps": 10,
+  "anchor": 16,
+  "extend": 24,
+  "full_below": 0.7643049836158753,
+  "reuse_at": 0.9872278928756714
+ },
+ "fps": 20,
+ "video": "videos/pi0_libero-torch/libero/libero_spatial/pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate/ep000.mp4",
+ "poster": "videos/pi0_libero-torch/libero/libero_spatial/pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate/ep000.jpg",
+ "run": "tiered-run1_demo_libero_libero_spatial",
+ "episode_key": "pi0_libero-torch|tiered_online|libero|libero_spatial|pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate|0",
+ "episode_seed": 3384614876827850106,
+ "env_reset": {
+  "init_state": 0
+ },
+ "git_sha": "961aa1f6f19b7d8ce3d2b8a2c273bf3cc6902fef"
+}

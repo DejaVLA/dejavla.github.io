@@ -1,0 +1,71 @@
+{
+ "model": "pi0_libero-torch",
+ "model_name": "π0",
+ "method": "DéjàVLA",
+ "config": "tiered_online",
+ "bench": "libero_plus",
+ "bench_name": "LIBERO-Plus",
+ "suite": "libero_spatial",
+ "task": "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate_language_4_view_0_0_100_0_0_initstate_0",
+ "task_id": 987,
+ "instruction": "please locate the black bowl situated between the plate and ramekin then carefully place it on the plate",
+ "perturbation": {
+  "category": "Language Instructions",
+  "difficulty_level": 2,
+  "base_task": "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate"
+ },
+ "episode": 0,
+ "success": true,
+ "steps": 80,
+ "n_calls": 4,
+ "tiers": {
+  "full": 4
+ },
+ "calls": [
+  {
+   "step": 0,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 24,
+   "score": -2.0
+  },
+  {
+   "step": 24,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 16,
+   "score": -2.0
+  },
+  {
+   "step": 40,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 16,
+   "score": -2.0
+  },
+  {
+   "step": 56,
+   "tier": "full",
+   "option": "s10",
+   "n_exec": 24,
+   "score": -2.0
+  }
+ ],
+ "policy": {
+  "denoising_steps": 10,
+  "anchor": 16,
+  "extend": 24,
+  "full_below": 0.7643049836158753,
+  "reuse_at": 0.9872278928756714
+ },
+ "fps": 20,
+ "video": "videos/pi0_libero-torch/libero_plus/libero_spatial/pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate_language_4_view_0_0_100_0_0_initstate_0/ep000.mp4",
+ "poster": "videos/pi0_libero-torch/libero_plus/libero_spatial/pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate_language_4_view_0_0_100_0_0_initstate_0/ep000.jpg",
+ "run": "tiered-run1_demo_lplus_libero_spatial",
+ "episode_key": "pi0_libero-torch|tiered_online|libero|libero_spatial|pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate_language_4_view_0_0_100_0_0_initstate_0|0",
+ "episode_seed": 2038095378539664111,
+ "env_reset": {
+  "init_state": 0
+ },
+ "git_sha": "961aa1f6f19b7d8ce3d2b8a2c273bf3cc6902fef"
+}
